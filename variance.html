@@ -1,0 +1,1582 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>MEAN</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.js' type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js" ></script>
+
+
+    <style>
+       html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+      
+        
+        .mytext {
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-name: popup;
+            transform-origin: center center;
+        }
+
+        @keyframes popup {
+            from {
+                font-size: 0;
+            }
+            to {
+                font-size: 5;
+            }
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .flex-container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-left {
+            width: 40%;
+            height: 100vh;
+            margin: 20px;
+            padding: 20px;
+            background: rgb(238, 246, 252);
+            border-radius: 5px;
+            border: 1px solid rgb(92, 92, 92);
+        }
+
+        .flex-right {
+            width: 60%;
+            margin: 20px;
+            padding: 20px;
+            background: rgb(238, 246, 252);
+            border-radius: 5px;
+            border: 1px solid rgb(92, 92, 92);
+            
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            display: table;
+            clear: both;
+        }
+
+        #btn {
+            width: 100%;
+            float: center;
+            position: relative;
+            background-color: #5bc0de;
+            color: white;
+        }
+
+      
+
+        .tab-content {
+            background-color: #ffffff;
+        }
+
+        .drop-active {
+            stroke:black;stroke-width:8
+        }
+
+        .drop-target {
+            fill: rgb(34, 238, 184);
+           
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    
+
+
+
+    <div id="smartwizard">
+        <ul class="nav">
+           <li>
+               <a class="nav-link" href="#step-1">
+                STANDARD DEVIATION
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-2">
+                  CALCULATION 1
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-3">
+                CALCULATION 2
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-4">
+                PROPERTIES OF STANDARD DEVIATION 1
+               </a>
+           </li>
+           <li>
+                <a class="nav-link" href="#step-5">
+                PROPERTIES OF STANDARD DEVIATION 2
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#step-6">
+                PROPERTIES OF STANDARD DEVIATION 3
+                </a>
+            </li>
+
+            <li>
+                <a class="nav-link" href="#step-7">
+                PROPERTIES OF STANDARD DEVIATION 4
+                </a>
+            </li>
+
+        </ul>
+     
+        <div class="tab-content">
+            
+           <div id="step-1" class="tab-pane" role="tabpanel">
+            <div class="flex-container">
+            <div class="flex-left">
+            
+              <text><b><h1>STANDARD DEVIATION</h1></b></text>
+
+              <text><b></b></text>
+              <p></p>
+              <text>We have seen that mean, median, the minimum and the maximum, and percentiles such as 25th and 75th are values that describe a sample of elements. </text>
+              <p></p>
+              <text>The most useful and the most used one of those metrics is probably the mean. </text>
+              <p></p>
+              <text><b>But, is it actually enough to look at the mean of the sample to understand it clearly? </b></text>
+
+              <p></p>
+              <text><b>For example, on the right side, you can see a sample with 4 elements whose mean is 10. Initially all the values are the same and equal to 10.
+                  Play with the + and - buttons to increase or decrease the value of each element. </b></text>
+
+
+                  <p></p>
+                  <text><b>Have you noticed that there are many different samples with 4 elements whose mean are equal to 10?</b></text>
+
+                  <p></p>
+                  <text><b>The key takeaway here is that even if you have the same mean for two different samples with the same size, the values
+                      in it can be totally different within each sample! </b></text>
+                
+                    <p></p>
+                    <text><b>So is there a way to capture this difference or 'variability' in the sample? </b></text>
+                        
+              
+                
+               </p>
+            </div>
+          
+            <div class="flex-right" id='svg_div' >
+                <svg id='svg1' width=100% height=100% viewBox="0 0 1000 1000"></svg>
+                
+                <text id='sum'>0</text>
+              
+            </div>
+       
+               
+        
+           </div>
+          </div>
+       
+           <div id="step-2" class="tab-pane" role="tabpanel">
+            <div class="flex-container">
+                <div class="flex-left">
+                
+                    <p><text><b>To calculate the standard deviation, lets first pick some strawberries!</b> </text></p>
+                    <p><text><b>The weights of strawberries goes from 1 to 10!</b> </text></p>
+                    <p> <button id="btn" onclick="rain_strawberry('svg2')">RAIN STRAWBERRIES!</button>
+                   </p>
+                </div>
+              
+                <div class="flex-right" id='svg_div' >
+                    <svg id='svg2' width=100% height=100% viewBox="0 0 1000 750">
+                        <style type="text/css">
+                            .st0{fill:#EA3D53;}
+                            .st1{fill:#D83945;}
+                            .st2{fill:#B12B3D;}
+                            .st3{fill:#333333;}
+                        </style>
+                        <svg id='basket' class='draggable' y=500>
+                            <g transform='scale(0.2)' >
+                                <path class="st0" d="M792.1,444.8H167.9c-9.8,0-17.7-7.9-17.7-17.7v-56.4c0-9.8,7.9-17.7,17.7-17.7h624.2c9.8,0,17.7,7.9,17.7,17.7
+                                    v56.4C809.8,436.9,801.9,444.8,792.1,444.8z"/>
+                                <path class="st1" d="M703.5,783.6h-447c-15.8,0-29.3-11.3-32.1-26.9l-42.8-311.9h596.8l-42.8,311.9
+                                    C732.9,772.3,719.3,783.6,703.5,783.6z"/>
+                                <path class="st2" d="M330,717.7L330,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                    c15.2,0,27.6,12.3,27.6,27.6v157.8C357.6,705.3,345.3,717.7,330,717.7z"/>
+                                <path class="st2" d="M434.6,717.7L434.6,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                    c15.2,0,27.6,12.3,27.6,27.6v157.8C462.2,705.3,449.9,717.7,434.6,717.7z"/>
+                                <path class="st2" d="M539.2,717.7L539.2,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                    c15.2,0,27.6,12.3,27.6,27.6v157.8C566.8,705.3,554.4,717.7,539.2,717.7z"/>
+                                <path class="st2" d="M643.8,717.7L643.8,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                    c15.2,0,27.6,12.3,27.6,27.6v157.8C671.4,705.3,659,717.7,643.8,717.7z"/>
+                                <path class="st3" d="M503.9,426.1h-46.7c-6.3,0-11.4-5.1-11.4-11.4v-227c0-6.3,5.1-11.4,11.4-11.4h46.7c6.3,0,11.4,5.1,11.4,11.4
+                                    v227C515.3,421,510.2,426.1,503.9,426.1z"/>
+                                <circle class="st0" cx="480.6" cy="386.7" r="19.8"/>
+                            </g>
+                        </svg>
+
+
+                        <svg id='strawberry' class='draggable' y=-100>
+                            <g transform='scale(0.8)'>
+                                <polygon style="fill:#659C35;" points="29.841,9.386 26.905,10 24.038,1.455 29.038,0 	"/>
+                                <path style="fill:#88C057;" d="M36.143,8.465c1.076-0.979,1.893-2.161,2.309-3.554c-5.457-2.031-7.156,0.602-7.156,0.602
+                                    c-0.079-1.069-0.888-1.522-1.925-1.628l0.471,5.5v0l0,0v0L26.905,10l0,0h0l-0.001-0.002l-1.756-5.234
+                                    c-0.524,0.264-0.877,0.538-0.893,0.749c0,0-1.7-2.633-7.156-0.602c0.429,1.432,1.266,2.654,2.389,3.647
+                                    c-4.387,0.621-8.419,2.131-10.449,5.844c10.277,3.075,13.336-1.882,13.336-1.882c0.623,6.736,5.841,8.725,6.63,9
+                                    c0.789-0.275,6.007-2.264,6.63-9c0,0,1.127,4.957,11.405,1.882C44.775,10.663,40.543,9.082,36.143,8.465z"/>
+                                <g>
+                                    <path style="fill:#E22F37;" d="M45.326,14.923c-0.015-0.018-0.027-0.038-0.042-0.056c-8.647,2.023-9.65-2.347-9.65-2.347
+                                        c-0.623,6.736-5.841,8.725-6.63,9c-0.789-0.275-6.007-2.264-6.63-9c0,0-2.555,4.06-10.726,2.501
+                                        c-0.018,0.017-0.036,0.035-0.055,0.052c0.024,0.004,0.05,0.011,0.073,0.015c-2.426,2.44-3.705,6.228-3.705,11.964
+                                        C7.962,39.874,20.848,57,28.5,57c7.652,0,20.538-17.126,20.538-29.949c0-5.843-1.328-9.664-3.842-12.099
+                                        C45.238,14.944,45.284,14.932,45.326,14.923z"/>
+                                </g>
+                                <path style="fill:#994530;" d="M17.295,20.672c-0.122-0.391-0.675-0.391-0.796,0c0,0-1.516,5.294-1.516,5.805
+                                    s0.199,0.992,0.561,1.354c0.361,0.362,0.842,0.561,1.353,0.561s0.992-0.199,1.353-0.561c0.362-0.362,0.561-0.842,0.561-1.354
+                                    S17.295,20.672,17.295,20.672z"/>
+                                <path style="fill:#994530;" d="M29.123,24.672c-0.122-0.391-0.675-0.391-0.796,0c0,0-1.516,5.294-1.516,5.805
+                                    s0.199,0.992,0.561,1.354c0.361,0.362,0.842,0.561,1.353,0.561s0.992-0.199,1.353-0.561c0.362-0.362,0.561-0.842,0.561-1.354
+                                    S29.123,24.672,29.123,24.672z"/>
+                                <path style="fill:#994530;" d="M40.295,20.66c-0.122-0.391-0.675-0.391-0.796,0c0,0-1.516,5.294-1.516,5.805
+                                    s0.199,0.992,0.561,1.354c0.361,0.362,0.842,0.561,1.353,0.561s0.992-0.199,1.353-0.561c0.362-0.362,0.561-0.842,0.561-1.354
+                                    S40.295,20.66,40.295,20.66z"/>
+                                <path style="fill:#994530;" d="M22.123,33.685c-0.122-0.391-0.675-0.391-0.796,0c0,0-1.516,5.294-1.516,5.805
+                                    s0.199,0.992,0.561,1.354c0.361,0.362,0.842,0.561,1.353,0.561s0.992-0.199,1.353-0.561c0.362-0.362,0.561-0.842,0.561-1.354
+                                    S22.123,33.685,22.123,33.685z"/>
+                                <path style="fill:#994530;" d="M29.123,42.66c-0.122-0.391-0.675-0.391-0.796,0c0,0-1.516,5.294-1.516,5.805
+                                    s0.199,0.992,0.561,1.354c0.361,0.362,0.842,0.561,1.353,0.561s0.992-0.199,1.353-0.561c0.362-0.362,0.561-0.842,0.561-1.354
+                                    S29.123,42.66,29.123,42.66z"/>
+                                <path style="fill:#994530;" d="M36.123,33.672c-0.122-0.391-0.675-0.391-0.796,0c0,0-1.516,5.294-1.516,5.805
+                                    s0.199,0.992,0.561,1.354c0.361,0.362,0.842,0.561,1.353,0.561s0.992-0.199,1.353-0.561c0.362-0.362,0.561-0.842,0.561-1.354
+                                    S36.123,33.672,36.123,33.672z"/>
+                            </g>
+                           
+                        </svg>
+                    </svg>
+                    
+                    <text id='sum'>0</text>
+                  
+                </div>
+           
+                   
+            
+               </div>
+           
+            </div>
+            <div id="step-4" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>STANDARD DEVIATION</h1></b></text>
+                      <p><text>The formula for standard deviation is as follows: </text></p>
+                      <image src='https://icon-library.net/images/standard-deviation-icon/standard-deviation-icon-27.jpg' width="350" height="200"> </image>
+                      
+                      <p><text>We first calculate the mean. Then calculate the difference of each element from mean, and square those differences.
+                        Then we add all of the squared value. After that we devide by the total number of elements.
+                    </text></p>
+
+                    <p><text>In the simlest case, if you have one element in your sample, the mean of the sample is equal to the value of that one element.
+                        Therefore standard deviation will be zero!
+                    </text></p>
+
+                    <p><text>The animation on right side shows element in your sample. Blue line shows the initial mean, whereas the gray line shows the new mean if you change the value of the element by dragging it below or above.
+
+                    </text></p>
+
+                      <button onclick="initiate_variance('svg3', 1)">PLAY WITH ANIMATION</button> 
+                        
+                       </p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg3' width=100% height=100% viewBox="0 0 1000 750"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+               
+                       
+                
+                   </div>
+            </div>
+
+            <div id="step-5" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>STANDARD DEVIATION</h1></b></text>
+                      <p><text>The formula for standard deviation is as follows: </text></p>
+                      <image src='https://icon-library.net/images/standard-deviation-icon/standard-deviation-icon-27.jpg' width="350" height="200"> </image>
+                      
+                      <p><text>In this case, we have 5 elements in the sample. Play with the animation to see how changing each of values affects mean and the variance.
+                    </text></p>
+                      <button onclick="initiate_variance('svg4', 5)">PLAY WITH ANIMATION</button> 
+                        
+                       </p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg4' width=100% height=100% viewBox="0 0 1000 750"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+               
+                       
+                
+                   </div>
+            </div>
+            <div id="step-6" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>STANDARD DEVIATION</h1></b></text>
+                      <p><text>The formula for standard deviation is as follows: </text></p>
+                      <image src='https://icon-library.net/images/standard-deviation-icon/standard-deviation-icon-27.jpg' width="350" height="200"> </image>
+                      
+                      <p><text>In this case, we have 10 elements in the sample. Play with the animation to see how changing each of values affects mean and the variance.
+                    </text></p>
+                      <button onclick="initiate_variance('svg5', 10)">CLICK</button> 
+                        
+                       </p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg5' width=100% height=100% viewBox="0 0 1000 750"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+               
+                       
+                
+                   </div>
+            </div>
+
+            <div id="step-7" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                        <text><b><h1>STANDARD DEVIATION</h1></b></text>
+                        <p><text>The formula for standard deviation is as follows: </text></p>
+                        <image src='https://icon-library.net/images/standard-deviation-icon/standard-deviation-icon-27.jpg' width="350" height="200"> </image>
+                        
+                        <p><text>In the last case, we have 50 elements in the sample. Play with the animation to see how changing each of values affects mean and the variance.
+                        </text></p>
+
+                        <p><text>As you may notice that, if sample size is large, then the effect of one extreme element is low accordingly, but its effect on the standard deviation is still big!
+                        </text></p>
+                      <button onclick="initiate_variance('svg6', 50)">CLICK</button> 
+                        
+                       </p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg6' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+               
+                       
+                
+                   </div>
+            </div>
+
+            <div id="step-3" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                        <text><b><h1>STANDARD DEVIATION</h1></b></text>
+                        <p><text>The formula for standard deviation is as follows: </text></p>
+                        <image src='https://icon-library.net/images/standard-deviation-icon/standard-deviation-icon-27.jpg' width="350" height="200"> </image>
+                        
+                        <p><text>We first calculate the mean. Then calculate the difference of each element from mean, and square those differences.
+                            Then we add all of the squared value. After that we devide by the total number of elements.
+                        </text></p>
+                        
+                      <button onclick="variance_calculation('svg7')">CLICK</button> 
+                        
+                       </p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg7' width=100% height=100% viewBox="0 0 1000 750" >
+                            <svg id='variance_svg' x='-500' >
+                                <g transform='scale(0.4)'>
+                                    <path d="m437.5,56h-412c-14.061,0-25.5,11.439-25.5,25.5v300c0,14.061 11.439,25.5 25.5,25.5h412c14.061,0 25.5-11.439 25.5-25.5v-300c0-14.061-11.439-25.5-25.5-25.5zm10.5,325.5c0,5.79-4.71,10.5-10.5,10.5h-412c-5.79,0-10.5-4.71-10.5-10.5v-300c0-5.79 4.71-10.5 10.5-10.5h412c5.79,0 10.5,4.71 10.5,10.5v300z"/>
+                                    <path d="m175.5,208c-4.142,0-7.5,3.358-7.5,7.5v136c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-136c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m207,167.498c0-12.958-10.542-23.5-23.5-23.5h-0.5v-32.498c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v32.498h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5zm-23.5,8.5h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                    <path d="m287.5,192c-4.142,0-7.5,3.358-7.5,7.5v152c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-152c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m319,143.5c0-12.958-10.542-23.5-23.5-23.5h-0.5v-8.5c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v8.5h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5zm-23.5,8.5h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                    <path d="m63.5,192c-4.142,0-7.5,3.358-7.5,7.5v152c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-152c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m95,151.5c0-12.958-10.542-23.5-23.5-23.5h-0.5v-16.5c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v16.5h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5zm-23.5,8.5h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                    <path d="m231.5,336c-4.142,0-7.5,3.358-7.5,7.5v8c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-8c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m239.5,272.002h-0.5v-160.502c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v160.502h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5s-10.542-23.5-23.5-23.5zm0,32h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                    <path d="m399.5,232c-4.142,0-7.5,3.358-7.5,7.5v112c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-112c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m407.5,167.998h-0.5v-56.498c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v56.498h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5s-10.542-23.5-23.5-23.5zm0,32h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                    <path d="m343.5,320c-4.142,0-7.5,3.358-7.5,7.5v24c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-24c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m351.5,256.002h-0.5v-144.502c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v144.502h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5s-10.542-23.5-23.5-23.5zm0,32h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                    <path d="m119.5,296c-4.142,0-7.5,3.358-7.5,7.5v48c0,4.142 3.358,7.5 7.5,7.5s7.5-3.358 7.5-7.5v-48c0-4.142-3.358-7.5-7.5-7.5z"/>
+                                    <path d="m127.5,232.002h-0.5v-120.502c0-4.142-3.358-7.5-7.5-7.5s-7.5,3.358-7.5,7.5v120.502h-0.5c-12.958,0-23.5,10.542-23.5,23.5s10.542,23.5 23.5,23.5h16c12.958,0 23.5-10.542 23.5-23.5s-10.542-23.5-23.5-23.5zm0,32h-16c-4.687,0-8.5-3.813-8.5-8.5s3.813-8.5 8.5-8.5h16c4.687,0 8.5,3.813 8.5,8.5s-3.813,8.5-8.5,8.5z"/>
+                                </g>
+                            </svg>
+                            <svg id='counting_svg' x='-500'>
+                                <g transform="translate(0.000000,400.000000) scale(0.0300000,-0.0300000)"  
+                                fill="#000000" stroke="none">
+                                <path d="M5825 4812 c-76 -48 -95 -102 -95 -266 0 -120 23 -567 36 -699 l7
+                                -69 -32 17 c-80 41 -186 27 -251 -32 -47 -42 -65 -96 -55 -167 5 -44 4 -48
+                                -12 -41 -97 40 -191 13 -229 -65 -30 -61 -29 -117 4 -251 27 -109 32 -146 36
+                                -304 6 -276 53 -499 141 -682 30 -61 57 -102 80 -120 l35 -28 0 -262 c0 -144
+                                3 -264 8 -266 4 -3 205 -2 447 2 l440 6 -4 268 -4 267 34 0 c94 0 199 102 331
+                                322 62 103 65 106 293 302 127 109 243 212 258 230 97 107 103 265 13 329 -41
+                                29 -132 30 -196 0 -25 -11 -146 -92 -270 -180 -194 -138 -228 -159 -246 -150
+                                -35 15 -44 51 -44 181 0 154 18 334 77 781 57 433 62 581 23 660 -32 65 -81
+                                99 -133 92 -82 -11 -141 -91 -177 -243 -17 -72 -29 -155 -75 -544 -31 -261
+                                -66 -430 -90 -430 -36 0 -52 110 -65 450 -28 722 -42 819 -128 884 -37 28
+                                -119 32 -157 8z"/>
+                                <path d="M8445 4811 c-77 -47 -94 -95 -95 -262 0 -179 33 -651 65 -927 15
+                                -126 10 -172 -19 -172 -31 0 -39 37 -72 328 -18 164 -42 370 -54 457 -11 88
+                                -23 178 -26 200 -14 120 -142 181 -236 113 -32 -22 -48 -48 -59 -98 -13 -57
+                                19 -424 61 -695 21 -137 38 -251 36 -252 -1 -2 -20 6 -41 17 -50 26 -108 25
+                                -161 -1 -96 -46 -107 -157 -39 -394 27 -95 39 -162 46 -250 11 -148 40 -321
+                                74 -440 35 -123 107 -268 150 -302 l35 -28 0 -263 c0 -201 3 -264 13 -267 6
+                                -2 208 -1 447 3 l435 7 -4 267 -4 268 34 0 c94 0 199 102 331 322 62 104 65
+                                106 298 307 240 208 278 246 311 316 24 52 25 139 1 185 -27 51 -93 83 -156
+                                76 -73 -8 -128 -39 -366 -210 -187 -133 -218 -152 -237 -143 -41 18 -46 54
+                                -40 250 6 187 21 326 84 792 24 184 36 311 37 400 1 120 -1 134 -24 180 -64
+                                128 -189 122 -263 -12 -41 -77 -63 -190 -107 -548 -41 -346 -62 -478 -85 -532
+                                -17 -41 -29 -42 -44 -4 -21 49 -30 137 -41 411 -25 632 -38 763 -81 839 -40
+                                73 -139 103 -204 62z"/>
+                                <path d="M11254 4811 c-50 -30 -64 -81 -64 -229 0 -213 34 -762 64 -1037 15
+                                -140 8 -182 -30 -191 -55 -14 -59 0 -93 371 -46 496 -84 791 -108 824 -30 41
+                                -81 63 -134 58 -61 -5 -103 -36 -125 -92 -15 -41 -16 -63 -5 -253 10 -167 24
+                                -275 72 -561 33 -194 58 -355 56 -357 -2 -2 -13 31 -25 74 -39 147 -170 489
+                                -244 637 -44 88 -63 105 -116 105 -38 0 -50 -5 -83 -39 -32 -32 -39 -46 -39
+                                -79 0 -63 44 -197 155 -477 139 -350 140 -352 125 -478 -35 -314 86 -835 222
+                                -951 l38 -33 0 -261 c0 -143 3 -263 8 -265 4 -3 204 -3 445 1 l437 5 0 269 0
+                                268 25 0 c97 0 205 105 338 330 55 93 63 101 287 294 248 214 278 244 312 309
+                                31 58 32 164 2 203 -53 71 -129 88 -226 51 -26 -10 -151 -92 -278 -182 -220
+                                -155 -233 -163 -261 -153 -16 5 -39 22 -50 36 -20 26 -21 35 -16 172 7 169 25
+                                304 102 755 51 300 56 341 53 450 -4 136 -20 184 -72 217 -39 24 -89 18 -124
+                                -14 -71 -66 -103 -171 -157 -504 -81 -506 -117 -646 -157 -606 -31 31 -41 144
+                                -68 802 -10 238 -27 384 -50 445 -34 90 -140 132 -216 86z"/>
+                                <path d="M3895 4678 c-65 -36 -101 -92 -134 -209 -15 -54 -115 -680 -121 -758
+                                -1 -3 -7 12 -15 34 -24 70 -109 125 -192 125 -52 0 -135 -50 -168 -102 -31
+                                -49 -45 -59 -45 -33 0 24 -77 73 -127 81 -96 14 -200 -33 -230 -103 -15 -38
+                                -20 -115 -9 -150 7 -22 6 -22 -24 -6 -18 8 -53 15 -79 15 -146 0 -195 -123
+                                -136 -338 24 -86 28 -120 30 -259 5 -362 105 -735 225 -837 l40 -35 0 -261 c0
+                                -143 3 -263 8 -265 4 -3 203 -2 442 2 l435 6 0 268 -1 267 31 0 c100 1 197 97
+                                343 340 48 81 65 98 293 295 133 115 254 226 270 248 90 125 67 280 -48 318
+                                -86 28 -156 -4 -431 -200 -117 -83 -221 -151 -231 -151 -10 0 -26 10 -37 21
+                                -17 19 -19 37 -18 178 1 178 8 244 71 726 38 286 47 379 47 510 1 148 -1 163
+                                -22 203 -37 69 -112 101 -167 70z"/>
+                                <path d="M810 3882 c-58 -8 -92 -26 -135 -74 -25 -28 -48 -61 -51 -74 -7 -29
+                                -5 -29 -57 -2 -58 29 -147 29 -204 0 -51 -27 -90 -81 -99 -139 -6 -39 -8 -41
+                                -27 -31 -32 17 -122 12 -157 -9 -81 -47 -98 -171 -47 -329 25 -74 27 -98 31
+                                -275 4 -208 22 -345 71 -514 35 -123 107 -268 150 -302 l35 -28 0 -262 c0
+                                -144 3 -264 7 -266 5 -3 206 -2 448 2 l440 6 -4 268 -4 267 34 0 c94 0 199
+                                102 331 322 63 104 65 106 298 307 236 203 301 273 320 340 25 89 4 173 -54
+                                214 -41 29 -132 30 -196 0 -25 -11 -147 -93 -272 -182 l-228 -161 -66 0 c-75
+                                0 -104 12 -104 42 0 23 82 461 104 551 24 101 -11 184 -97 229 -59 30 -157 30
+                                -215 0 l-43 -22 -8 23 c-23 58 -126 109 -201 99z"/>
+                                </g>
+                            </svg>
+                            <svg id='scale_svg' x='-500'>
+                                <g transform='scale(0.4)'  >
+                                    <path d="M357.946,340.671c-2.754-9.399-47.591-177.249-53.69-200.091c-6.076-22.831-21.959-28.936-39.852-28.936
+                                        c-6.17,0-29.965,0-58.326,0V90.55C314.561,80.454,343.492,0,343.492,0H30.032c0,0,24.26,84.985,140.261,91.015v20.617
+                                        c-26.392,0-48.125,0-53.98,0c-17.893,0-33.764,6.105-39.858,28.937C70.366,163.411,25.535,331.26,22.776,340.66
+                                        c-3.439,11.781-2.37,27.165,21.604,27.165c2.644,0,8.639,0,17.12,0v12.896h254.78v-12.885c9.945,0,17.114,0,20.031,0
+                                        C360.316,367.836,361.384,352.453,357.946,340.671z M190.364,133.44c58.737,0,106.328,47.567,106.328,106.299
+                                        s-47.591,106.312-106.328,106.312c-58.715,0-106.306-47.579-106.306-106.312S131.648,133.44,190.364,133.44z"/>
+                                    <path d="M129.331,192.952l-10.91-7.767l-3.224,4.52l10.753,7.627C126.949,195.797,128.186,194.427,129.331,192.952z"/>
+                                    <path d="M159.335,169.133l-5.948-12.025l-4.984,2.475l6.064,12.206C156.1,170.922,157.645,169.9,159.335,169.133z"/>
+                                    <path d="M113.158,239.74c0-0.628,0.18-1.196,0.203-1.812H99.825v5.542h13.716C113.495,242.204,113.158,241.018,113.158,239.74z"/>
+                                    <path d="M273.792,199.051l-2.661-4.846l-13.907,7.611c0.883,1.58,1.824,3.207,2.638,4.845L273.792,199.051z"/>
+                                    <path d="M241.503,163.307l-4.764-2.858l-7.703,12.827c1.592,0.941,3.299,1.69,4.856,2.725L241.503,163.307z"/>
+                                    <path d="M194.517,162.964v-14.245h-5.548v13.954c0.465,0,0.918-0.128,1.383-0.128
+                                        C191.792,162.545,193.111,162.888,194.517,162.964z"/>
+                                    <path d="M235.113,321.837l-7.412-14.941c-1.604,0.917-3.195,1.905-4.869,2.673l7.285,14.732L235.113,321.837z"/>
+                                    <path d="M268.319,291.699l-13.513-9.597c-0.999,1.557-2.254,2.928-3.369,4.38l13.652,9.725L268.319,291.699z"/>
+                                    <path d="M267.576,239.74c0,1.267-0.303,2.464-0.36,3.718h16.498v-5.542h-16.301C267.401,238.555,267.576,239.112,267.576,239.74z"
+                                        />
+                                    <path d="M188.969,316.807v15.812h5.548v-16.104c-1.406,0.07-2.725,0.418-4.165,0.418
+                                        C189.887,316.934,189.434,316.807,188.969,316.807z"/>
+                                    <path d="M122.284,275.385l-12.601,6.855l2.667,4.857l12.554-6.832C123.951,278.674,123.132,277.036,122.284,275.385z"/>
+                                    <path d="M154.648,307.791c-1.656-0.872-3.312-1.708-4.892-2.661L142,318.026l4.758,2.859L154.648,307.791z"/>
+                                    <path d="M157.814,293.79l4.27,2.417l26.746-44.743c1.092,0.244,2.104,0.662,3.26,0.662c9.398,0,16.998-7.61,16.998-16.986
+                                        c0-9.389-7.6-16.998-16.998-16.998c-9.365,0-16.981,7.609-16.981,16.998c0,5.367,2.644,9.945,6.536,13.082L157.814,293.79z
+                                         M192.1,230.282c2.714,0,4.88,2.186,4.88,4.857c0,2.684-2.178,4.879-4.88,4.879c-2.689,0-4.845-2.195-4.845-4.879
+                                        C187.255,232.467,189.411,230.282,192.1,230.282z"/>
+                                </g>
+                            </svg>
+                            <svg id='basket_std' class='draggable' y=500>
+                                <g transform='scale(0.2)' >
+                                    <path class="st0" d="M792.1,444.8H167.9c-9.8,0-17.7-7.9-17.7-17.7v-56.4c0-9.8,7.9-17.7,17.7-17.7h624.2c9.8,0,17.7,7.9,17.7,17.7
+                                        v56.4C809.8,436.9,801.9,444.8,792.1,444.8z"/>
+                                    <path class="st1" d="M703.5,783.6h-447c-15.8,0-29.3-11.3-32.1-26.9l-42.8-311.9h596.8l-42.8,311.9
+                                        C732.9,772.3,719.3,783.6,703.5,783.6z"/>
+                                    <path class="st2" d="M330,717.7L330,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                        c15.2,0,27.6,12.3,27.6,27.6v157.8C357.6,705.3,345.3,717.7,330,717.7z"/>
+                                    <path class="st2" d="M434.6,717.7L434.6,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                        c15.2,0,27.6,12.3,27.6,27.6v157.8C462.2,705.3,449.9,717.7,434.6,717.7z"/>
+                                    <path class="st2" d="M539.2,717.7L539.2,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                        c15.2,0,27.6,12.3,27.6,27.6v157.8C566.8,705.3,554.4,717.7,539.2,717.7z"/>
+                                    <path class="st2" d="M643.8,717.7L643.8,717.7c-15.2,0-27.6-12.3-27.6-27.6V532.3c0-15.2,12.3-27.6,27.6-27.6l0,0
+                                        c15.2,0,27.6,12.3,27.6,27.6v157.8C671.4,705.3,659,717.7,643.8,717.7z"/>
+                                    <path class="st3" d="M503.9,426.1h-46.7c-6.3,0-11.4-5.1-11.4-11.4v-227c0-6.3,5.1-11.4,11.4-11.4h46.7c6.3,0,11.4,5.1,11.4,11.4
+                                        v227C515.3,421,510.2,426.1,503.9,426.1z"/>
+                                    <circle class="st0" cx="480.6" cy="386.7" r="19.8"/>
+                                </g>
+                            </svg>
+
+                            <svg id='mean_svg' x='-500'>
+                                <g transform='scale(0.2)'> 
+                                    <path d="M395.527,97.043V55.352H124.537l159.46,171.507c9.983,10.749,9.848,27.458-0.319,38.026L126.017,428.861h269.504v-25.18
+                                        c0-15.256,12.413-27.668,27.674-27.668c15.256,0,27.681,12.412,27.681,27.668v52.848c0,15.262-12.419,27.681-27.681,27.681H61.014
+                                        c-11.106,0-21.107-6.603-25.464-16.834c-4.359-10.226-2.189-22.012,5.509-30.026l184.584-191.964L40.743,46.521
+                                        c-7.492-8.068-9.496-19.798-5.101-29.899C40.042,6.525,50.005,0,61.014,0h362.188c15.255,0,27.68,12.413,27.68,27.68v69.363
+                                        c0,15.259-12.419,27.677-27.68,27.677C407.94,124.72,395.527,112.308,395.527,97.043z"/>
+                                </g>
+                            </svg>
+                        </svg>
+                        <text id='sum'>0</text>
+                      
+                    </div>
+               
+                       
+                
+                   </div>
+            </div>
+       
+        </div>
+    </div>
+
+       
+
+   
+
+    <script>
+        var sum_field = document.getElementById('sum');
+        var svgNS = "http://www.w3.org/2000/svg";  
+        var sample_size = 0
+
+        
+
+        $(document).ready(function () {
+            initialize_numbers('svg1') 
+            var options = {
+                selected: 0,
+                theme: 'arrows',
+                enableURLhash: false,
+                transition: {
+                    animation: 'slide-horizontal', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+                },
+                toolbarSettings: {
+                    toolbarPosition: 'bottom', // both bottom
+                    toolbarButtonPosition: 'center', // both bottom
+                }
+            };
+            // SmartWizard initialize
+            $('#smartwizard').smartWizard(options);
+
+
+            $("svg").each(function(){
+                this.width = this.parentNode.width;
+                this.height = this.parentNode.height;
+            });
+            
+      
+
+            $('#range_from').on("input change", function() { document.getElementById('from_value').textContent='FROM: '+$('#range_from')[0].value; });
+            $('#range_to').on("input change", function() { document.getElementById('to_value').textContent='TO: '+$('#range_to')[0].value; });
+            $('#sample_size').on("input change", function() { document.getElementById('n_value').textContent='SIZE: '+$('#sample_size')[0].value; });
+            
+            
+
+
+        })
+
+
+
+        
+
+                
+        // target elements with the "draggable" class
+        interact('.draggable')
+        .draggable({
+            // enable inertial throwing
+            inertia: true,
+            // keep the element within the area of it's parent
+            modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: true
+            })
+            ],
+            // enable autoScroll
+            autoScroll: true,
+
+            listeners: {
+                // call this function on every dragmove event
+                move: dragMoveListener,
+
+                // call this function on every dragend event
+                end (event) {
+
+                    if(event.target.getAttribute('which') == 'variance_circle'){
+                        index=0
+                        squares.forEach(element => {
+                            anime({
+                                targets: element,
+                                'x':  600 ,
+                                'y': 600,
+                                'height':0,
+                                'width':0,
+                                easing: 'easeInOutQuad',
+                                direction: 'alternate',
+                                duration: 1000,
+                                loop: false,
+                                delay: index*100,
+                                persist: true
+                            })
+
+                            index++
+                        });
+                    }
+                    else if (event.target.getAttribute('id') == 'basket_std'){
+                        x = parseInt(event.target.getAttribute('x'))
+                        y = parseInt(event.target.getAttribute('y'))
+                        console.log(x + '--'+y)
+                        alert_text = document.getElementById('alert_text')
+                        weight_total = 0
+                        count_total = 0
+                        collected.forEach(element => {
+                            count_total += 1
+                            weight_total += parseInt(element.getAttribute('weight')) 
+                        })
+                        mean_final = weight_total/count_total
+                        std_final = 0
+                        collected.forEach(element => {
+                            std_final += (parseInt(element.getAttribute('weight')) - mean_final)**2
+
+                        })
+                        std_final = std_final**0.5
+
+                        if(x >= 0 && x <= 200 &&  y >= -50 && y <= 100  ){
+                            anime({
+                                targets: document.getElementById('scale_svg'),
+                                'opacity': 0,
+                                easing: 'easeInOutQuad',
+                                direction: 'alternate',
+                                duration: 200,
+                                loop: 6,
+                                delay: 0,
+                                persist: false
+                            })
+                            weighted = 1
+                            alert_text.textContent = 'TOTAL WEIGHT CALCULATED! IT IS '+parseInt(weight_total*100)/100
+                        } else if(x >= 550 && x <= 1000 &&  y >= -50 && y <= 100  ){
+                            anime({
+                                targets: document.getElementById('variance_svg'),
+                                'opacity': 0,
+                                easing: 'easeInOutQuad',
+                                direction: 'alternate',
+                                duration: 200,
+                                loop: 6,
+                                delay: 0,
+                                persist: false
+                            })
+                            if(mean_calculated == 0){
+                                alert_text.textContent = 'I DONT KNOW THE MEAN :('
+                            } else {
+                                variance_calculated=1
+                                alert_text.textContent = 'STANDARD DEVIATION CALCULATED! IT IS ' + parseInt(std_final*100)/100
+                            }
+                            
+                        }
+                        else if(x >= 0 && x <= 200 &&  y >= 400 && y <= 800  ){
+                            anime({
+                                targets: document.getElementById('counting_svg'),
+                                'opacity': 0.5,
+                                easing: 'easeInOutQuad',
+                                direction: 'alternate',
+                                duration: 200,
+                                loop: 6,
+                                delay: 0,
+                                persist: false
+                            })
+                            counted=1
+                            alert_text.textContent = 'COUNT CALCULATED! IT IS '+count_total
+                        } else if(x >= 600 && x <= 1000 &&  y >= 400 && y <= 800  ){
+                            anime({
+                                targets: document.getElementById('mean_svg'),
+                                'opacity': 0,
+                                easing: 'easeInOutQuad',
+                                direction: 'alternate',
+                                duration: 200,
+                                loop: 6,
+                                delay: 0,
+                                persist: false
+                            })
+                            if(counted == 0){
+                                alert_text.textContent =  'I DONT KNOW THE TOTAL COUNT :('
+                            } else if(weighted == 0){
+                                alert_text.textContent = 'I DONT KNOW THE TOTAL WEIGHT :('
+                            } else {
+                                mean_calculated=1
+                                alert_text.textContent = 'MEAN CALCULATED! IT IS ' + parseInt(mean_final*100)/100
+                            }
+                        }
+                    }   
+
+
+
+
+
+                    
+                }
+            }
+        })
+
+        function dragMoveListener (event) {
+            var target = event.target,
+        
+            svg = target.parentElement
+            var pt = svg.createSVGPoint();
+            pt.x = event.pageX;
+            pt.y = event.pageY;
+            pt = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+           
+
+            
+            // update the posiion attributes
+            target.setAttribute('x', pt.x-100);
+            target.setAttribute('y', pt.y-100);
+            
+
+            if(target.getAttribute('which') == 'variance_circle' && pt.y <= 600 && pt.y >= 0 ){
+                //target.setAttribute('cx', pt.x);
+                target.setAttribute('cy', pt.y);
+
+                index = parseInt(target.getAttribute('order'))
+                variance_texts[index].textContent = parseInt(pt.y)
+                variance_mean_verticals[index].setAttribute('y1', parseInt(pt.y))
+                //variance_mean_verticals[index].setAttribute('x1', parseInt(pt.x))
+                //variance_mean_verticals[index].setAttribute('x2', parseInt(pt.x))
+
+                variance_texts[index].setAttribute('y', parseInt(pt.y)- 10) 
+                variance_circ_y_values[index] = parseInt(pt.y)
+                the_mean = variance_circ_y_values.reduce((a, b) => a + b, 0)/variance_circ_y_values.length
+                variance = 0
+                variance_circ_y_values.forEach(element => {
+                    variance += (element - the_mean)**2
+                })
+                document.getElementById('variance_final').textContent = (parseInt(Math.sqrt(variance)*100)/100)
+
+                document.getElementById('variance_mean_line').setAttribute('y1', the_mean)
+                document.getElementById('variance_mean_line').setAttribute('y2', the_mean)
+
+                document.getElementById('new_mean_text').textContent = the_mean
+                variance_mean_verticals.forEach(element => {
+                    element.setAttribute('y2', the_mean)
+                })
+                
+               
+                
+            }
+
+            if(event.target.getAttribute('which') == 'variance_circle'){
+                the_mean = variance_circ_y_values.reduce((a, b) => a + b, 0)/variance_circ_y_values.length
+                console.log(the_mean)
+                index=0
+                variance_circ_y_values.forEach(element => {
+                    
+                    y_val = element
+                    if(element > the_mean){
+                        y_val = the_mean
+                    }
+
+                    target_temp = squares[index]
+                    x_val_temp = variance_circ_x_values[index]
+
+                    anime({
+                        targets: target_temp,
+                        'x':  x_val_temp ,
+                        'y': y_val,
+                        'height':Math.abs(element - the_mean),
+                        'width':Math.abs(element - the_mean),
+                        easing: 'easeInOutQuad',
+                        direction: 'alternate',
+                        duration: 0,
+                        loop: false,
+                        delay: 0,
+                        persist: true
+                    })
+
+                    index++
+                });
+            }
+                  
+
+
+
+        }
+        last_pop = 0
+        active_set = []
+        
+      
+        window.dragMoveListener = dragMoveListener
+
+
+        rects = []
+        result_text = null
+        function initialize_numbers(svg){
+            n=4
+            mean_init = 10
+            for(i=0; i<n; i++){
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*1000/n + 10 );
+                rect.setAttributeNS(null, 'y', 300);
+                rect.setAttributeNS(null, 'height', 250);
+                rect.setAttributeNS(null, 'width', 1000/n -10);
+                rect.setAttributeNS(null, 'id', 'rect'+i)
+                rect.setAttributeNS(null, 'val', 10)
+                rect.setAttributeNS(null, 'stroke', 'black')
+                rect.setAttributeNS(null, 'fill', '#b5e7f7');
+                document.getElementById(svg).appendChild(rect)
+            
+                var increment = document.createElementNS(svgNS,"circle");  
+                increment.setAttributeNS(null, 'cx', i*1000/n  + 500/n );
+                increment.setAttributeNS(null, 'cy', 650 );
+                increment.setAttributeNS(null, 'r', 20 );
+                increment.setAttributeNS(null, 'fill', '#84CDF0');
+                increment.setAttributeNS(null, 'id', '#84CDF0');
+                increment.setAttributeNS(null, 'onclick', "increment("+i+")");
+                document.getElementById(svg).appendChild(increment)
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', i*1000/n  + 500/n  );
+                text.setAttributeNS(null, 'y', 650 );
+                text.setAttributeNS(null, 'font-size', 20 );
+                text.setAttributeNS(null, 'fill', 'white' );
+                text.textContent = '+'
+                document.getElementById(svg).appendChild(text)
+
+                var decrement = document.createElementNS(svgNS,"circle");  
+                decrement.setAttributeNS(null, 'cx', i*1000/n  + 500/n );
+                decrement.setAttributeNS(null, 'cy', 700 );
+                decrement.setAttributeNS(null, 'r', 20);
+                decrement.setAttributeNS(null, 'fill', '#F0A09C');
+                decrement.setAttributeNS(null, 'onclick', "decrement("+i+")");
+                document.getElementById(svg).appendChild(decrement)
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', i*1000/n  + 500/n  );
+                text.setAttributeNS(null, 'y', 700 );
+                text.setAttributeNS(null, 'font-size', 20 );
+                text.setAttributeNS(null, 'fill', 'white' );
+                text.textContent = '-'
+                document.getElementById(svg).appendChild(text)
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', i*1000/n  + 500/n -10 );
+                text.setAttributeNS(null, 'y', 750 );
+                text.setAttributeNS(null, 'font-size', 25 );
+                text.setAttributeNS(null, 'font-weight', 'bold' );
+                text.setAttributeNS(null, 'fill', 'black' );
+                text.setAttributeNS(null, 'id', 'val' +i);
+                text.textContent = mean_init
+                document.getElementById(svg).appendChild(text)
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', i*1000/n  + 500/n -70 );
+                text.setAttributeNS(null, 'y', 590 );
+                text.setAttributeNS(null, 'font-size', 50 );
+                text.setAttributeNS(null, 'font-weight', 'bold' );
+                text.setAttributeNS(null, 'stroke', 'black' );
+                text.setAttributeNS(null, 'fill', '#F0A09C' );
+                text.textContent = 'value '+(i+1)
+                document.getElementById(svg).appendChild(text)
+
+                result_text = document.createElementNS(svgNS,"text");  
+                result_text.setAttributeNS(null, 'x', 20 );
+                result_text.setAttributeNS(null, 'y', 20 );
+                result_text.setAttributeNS(null, 'font-size', 0 );
+                result_text.setAttributeNS(null, 'font-weight', 'bold' );
+                result_text.setAttributeNS(null, 'fill', 'black' );
+                result_text.setAttributeNS(null, 'opacity', 1 );
+                result_text.setAttributeNS(null, 'id', 'result_text');
+                document.getElementById(svg).appendChild(result_text)
+
+                rects.push(rect)
+            }
+
+            sum = 0
+            rects.forEach(element => {
+                sum += parseFloat(element.getAttribute('val'))
+            });
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 0)
+            myline.setAttribute('y1', 300)
+            myline.setAttribute('x2', 1000)
+            myline.setAttribute('y2', 300)
+            myline.setAttribute('id', 'mean_line')
+            myline.setAttribute('style', "stroke:#5bc0de;stroke-width:4")
+            document.getElementById(svg).appendChild(myline)
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 800 );
+            text.setAttributeNS(null, 'y', 290 );
+            text.setAttributeNS(null, 'font-size', 25);
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.setAttributeNS(null, 'id', 'mean_text');
+            text.textContent = 'The mean is: ' +mean_init
+            document.getElementById(svg).appendChild(text)
+
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 0)
+            myline.setAttribute('y1', 300)
+            myline.setAttribute('x2', 1000)
+            myline.setAttribute('y2', 300)
+            myline.setAttribute('id', 'original_mean_line')
+            myline.setAttribute('opacity', 0.5)
+            myline.setAttribute('style', "stroke:#F0A09C;stroke-width:4")
+            myline.setAttribute('stroke-dasharray', "20, 5")
+            document.getElementById(svg).appendChild(myline)
+            
+        }
+
+        function increment(id){
+            obj = document.getElementById('rect'+id)
+            text = document.getElementById('val'+id)
+            len = rects.length
+            temp = parseFloat(obj.getAttribute('y'))
+            val = parseFloat(obj.getAttribute('val'))
+            hgt = parseFloat(obj.getAttribute('height'))
+            
+            if(val<20){
+                anime({
+                    targets: obj,
+                    'y': temp-500/len,
+                    'height': hgt+500/len,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 100,
+                    loop: false,
+                    delay: 0,
+                    persist: true,
+                    complete: function(anim) {
+                        calculate_new_mean();
+                    }
+                });
+        
+                obj.setAttribute('val', val+5)
+                text.textContent = val+5
+            }
+            
+        }
+
+
+        function decrement(id){
+            obj = document.getElementById('rect'+id)
+            text = document.getElementById('val'+id)
+            len = rects.length
+            temp = parseFloat(obj.getAttribute('y'))
+            val = parseFloat(obj.getAttribute('val'))
+            hgt = parseFloat(obj.getAttribute('height'))
+            if(val>0){
+                anime({
+                        targets: obj,
+                        'y': temp+500/len,
+                        'height': hgt-500/len,
+                        easing: 'easeInOutQuad',
+                        direction: 'alternate',
+                        duration: 100,
+                        loop: false,
+                        delay: 0,
+                        persist: true,
+                        complete: function(anim) {
+                            calculate_new_mean();
+                        }
+                    });
+                obj.setAttribute('val', val-5)
+                text.textContent = val-5
+            }
+        }
+
+        function calculate_new_mean(){
+            sum = 0
+            rects.forEach(element => {
+                sum += parseFloat(element.getAttribute('val'))
+            });
+            line = document.getElementById('mean_line')
+            txt = document.getElementById('mean_text')
+            anime({
+                targets: line,
+                'y1': 550 - ( (500/20) * sum/rects.length),
+                'y2': 550 - ( (500/20) * sum/rects.length),
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: 0,
+                loop: false,
+                delay: 0,
+                persist: true  
+                
+            });
+
+            anime({
+                targets: txt,
+                'y': 550 - ( (500/20) * sum/rects.length),
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: 0,
+                loop: false,
+                delay: 0,
+                persist: true  
+                
+            });
+            txt.textContent = 'The mean is: ' + sum/rects.length;
+            
+            if(sum == 40){
+                message='Excellent!'
+            }
+            else if(sum > 40){
+                message = 'To maintain a mean of 10, you need to subtract the total of ' + (sum-40) + ' from other bars.'
+            } else {
+                message = 'To maintain a mean of 10, you need to add the total of ' + (40-sum) + ' to other bars.'
+            }
+
+            result_text.textContent = message
+
+            anime({
+                targets: result_text,
+                'font-size':25,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: 1000,
+                loop: false,
+                delay: 0,
+                persist: true  
+                
+            });
+        }
+
+        function rain_strawberry(svg){
+            
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 50 );
+            text.setAttributeNS(null, 'y', -110 );
+            text.setAttributeNS(null, 'font-size', 40 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = '1 ---- 2 ----- 3 ----- 4 ----- 5 ----- 6 ---- 7 ----- 8 ----- 9 --- 10'
+            document.getElementById(svg).appendChild(text)
+
+            for(var x=0; x<50; x++) window.setTimeout(generate_strw(svg,x), 1000);
+            draw_buckets(svg)
+
+        }
+
+        const collected = new Set()
+        const x_values = new Set()
+        function generate_strw(svg,x){
+                rnd = Math.random()
+                x_values.add(parseInt(rnd*10)*100 + 50)
+                var stw=document.getElementById("strawberry")
+                var stw_new=stw.cloneNode(true)
+                stw_new.setAttribute('x', parseInt(rnd*10)*100 + 50)
+                stw_new.setAttribute('y', -100)
+                stw_new.setAttribute('weight', parseInt(rnd*10+1))
+                stw_new.setAttribute('discard', 0);
+                var g_child = stw_new.childNodes[1];
+                g_child.setAttribute('transform', 'scale('+(parseInt(rnd*10+1)/10)+')')
+                document.getElementById(svg).appendChild(stw_new)
+
+                anime({
+                    targets: stw_new,
+                    'y': 800,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 5000,
+                    loop: false,
+                    delay: 200*x,
+                    persist: true,
+                    update: function() {
+                        basket = document.getElementById('basket')
+                        x_dist = Math.abs(parseFloat(basket.getAttribute('x'))+75-parseFloat(stw_new.getAttribute('x'))) 
+                        y_dist = Math.abs(parseFloat(basket.getAttribute('y'))+75-parseFloat(stw_new.getAttribute('y'))) 
+                        if(x_dist <= 50 && y_dist <= 30 && stw_new.getAttribute('discard') == '0'){
+                            collected.add(stw_new)
+                            
+                            stw_new.setAttribute('discard', 1) 
+                            buckets.forEach(element => {
+                                if(parseInt(stw_new.getAttribute('x')) == parseInt(element.getAttribute('x')) + 40 ){
+                                    element.setAttribute('count', parseInt(element.getAttribute('count')) + 1)
+                                    anime({
+                                        targets: element,
+                                        'y': 500 + (250 - (parseInt(element.getAttribute('count')))*50),
+                                        'height': (parseInt(element.getAttribute('count')))*50,
+                                        easing: 'easeInOutQuad',
+                                        direction: 'alternate',
+                                        duration: 1000,
+                                        loop: false,
+                                        delay: 0,
+                                        persist: true
+                                    })
+                                }
+                            })
+                            stw_new.remove();
+                            
+                        };
+
+                        
+                       
+                        
+                    }
+                });
+            
+            
+        }
+
+        buckets = []
+        function draw_buckets(svg){
+            x_values.forEach(element => {
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', element-40 );
+                rect.setAttributeNS(null, 'y', 750);
+                rect.setAttributeNS(null, 'height', 0);
+                rect.setAttributeNS(null, 'width', 90);
+                rect.setAttributeNS(null, 'stroke', 'black');
+                rect.setAttributeNS(null, 'name', 'buckets');
+                rect.setAttributeNS(null, 'count', 0);
+                rect.setAttributeNS(null, 'fill', '#5bc0de');
+                document.getElementById(svg).appendChild(rect)
+                buckets.push(rect)
+            });
+            
+        }
+
+
+        function draw_mean_line(svg){
+            sum = 0
+            collected.forEach(element => {
+                sum += parseInt(element.getAttribute('weight'))
+            })
+            the_mean = sum / collected.size
+            
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 0)
+            myline.setAttribute('y1', 750 - the_mean*25)
+            myline.setAttribute('x2', 1000)
+            myline.setAttribute('y2', 750 - the_mean*25)
+            myline.setAttribute('id', 'mean_line')
+            myline.setAttribute('style', "stroke:#5bc0de;stroke-width:4")
+            document.getElementById(svg).appendChild(myline)
+            
+        }
+
+
+        var variance_circ_y_values=[]
+        var variance_circ_x_values=[]
+        var variance_circs = []
+        var variance_mean_verticals = []
+        var variance_texts = []
+        var squares = []
+
+        function initiate_variance(svg, n){
+            //n = 20
+
+ 
+            var tl = anime.timeline({
+                        easing: 'easeInOutQuad'
+                    });
+
+            try { document.getElementById('variance_mean_line').remove()}
+            catch {}
+
+            try { document.getElementById('initial_mean').remove()}
+            catch {}
+
+            try { document.getElementById('new_mean_text').remove()}
+            catch {}
+
+            try { document.getElementById('original_mean_text').remove()}
+            catch {}
+
+            try { document.getElementById('variance_final').remove()}
+            catch {}
+
+            try { document.getElementById('original_variance').remove()}
+            catch {}
+
+            
+            
+           
+
+            while(variance_circs.length>0){variance_circs.pop().remove()}
+            while(variance_texts.length>0){variance_texts.pop().remove()}
+            while(variance_mean_verticals.length>0){variance_mean_verticals.pop().remove()}
+            while(squares.length>0){squares.pop().remove()}
+            while(variance_circ_y_values.length>0){variance_circ_y_values.pop()}
+            while(variance_circ_x_values.length>0){variance_circ_x_values.pop()}
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 600  );
+            text.setAttributeNS(null, 'y', 650 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.setAttributeNS(null, 'id', 'variance_final' );
+            document.getElementById(svg).appendChild(text)
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 500  );
+            text.setAttributeNS(null, 'y', 650 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = 'New: '
+            document.getElementById(svg).appendChild(text)
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 450  );
+            text.setAttributeNS(null, 'y', 550 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = 'VARIANCE: '
+            document.getElementById(svg).appendChild(text)
+
+            for(i=0; i <n; i++){
+                rand = parseInt(Math.random()*200) + 200
+                variance_circ_y_values.push(rand)
+
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', 0 );
+                rect.setAttributeNS(null, 'y', 0);
+                rect.setAttributeNS(null, 'height', 0);
+                rect.setAttributeNS(null, 'width', 0);
+                rect.setAttributeNS(null, 'opacity', 0.3)
+                rect.setAttributeNS(null, 'stroke', 'black')
+                rect.setAttributeNS(null, 'fill', '#DB9F4B');
+                document.getElementById(svg).appendChild(rect)
+                squares.push(rect)
+                
+                var myline = document.createElementNS(svgNS,"line"); 
+                myline.setAttribute('x1', i*1000/n + 20)
+                myline.setAttribute('y1',   rand)
+                myline.setAttribute('x2', i*1000/n + 20)
+                myline.setAttribute('y2',  rand)
+                myline.setAttribute('opacity', 0)
+                myline.setAttribute('style', "stroke:black;stroke-width:4")
+                document.getElementById(svg).appendChild(myline)
+                variance_mean_verticals.push(myline)
+
+                text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', i*1000/n  );
+                text.setAttributeNS(null, 'y', 0 );
+                text.setAttributeNS(null, 'font-size', 20 );
+                text.setAttributeNS(null, 'font-weight', 'bold' );
+                text.setAttributeNS(null, 'fill', 'black' );
+                text.setAttributeNS(null, 'opacity', 1 );
+                text.textContent = rand
+                document.getElementById(svg).appendChild(text)
+                variance_texts.push(text)
+
+                var circ = document.createElementNS(svgNS,"circle");  
+                circ.setAttributeNS(null, 'cx', i*1000/n + 20 );
+                circ.setAttributeNS(null, 'cy', -100 );
+                circ.setAttributeNS(null, 'r', 0 );
+                circ.setAttributeNS(null, 'fill', '#84CDF0');
+                circ.setAttributeNS(null, 'stroke', 'black');
+                circ.setAttributeNS(null, 'class', "draggable");
+                circ.setAttributeNS(null, 'which', "variance_circle");
+                circ.setAttributeNS(null, 'order', i);
+                document.getElementById(svg).appendChild(circ)
+                variance_circs.push(circ)
+                variance_circ_x_values.push(i*1000/n + 20)
+                tl.add({
+                    targets: [circ,text],
+                    'r': 15,
+                    'cy':  rand,
+                    'y':  rand - 20,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 300,
+                    loop: false,
+                    persist: true
+                })
+
+                
+            }
+
+            the_mean = variance_circ_y_values.reduce((a, b) => a + b, 0)/variance_circ_y_values.length
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 0)
+            myline.setAttribute('y1',  the_mean)
+            myline.setAttribute('x2', 1000)
+            myline.setAttribute('y2',  the_mean)
+            myline.setAttribute('opacity', 1)
+            myline.setAttribute('id', 'initial_mean')
+            myline.setAttribute('style', "stroke:#5bc0de;stroke-width:2")
+            document.getElementById(svg).appendChild(myline)
+            
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 200  );
+            text.setAttributeNS(null, 'y', 650 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.setAttributeNS(null, 'id', 'new_mean_text' );
+            text.textContent = the_mean
+            document.getElementById(svg).appendChild(text)
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 100  );
+            text.setAttributeNS(null, 'y', 650 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = 'New: '
+            document.getElementById(svg).appendChild(text)
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 200  );
+            text.setAttributeNS(null, 'y', 600 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.setAttributeNS(null, 'id', 'original_mean_text' );
+            text.textContent = the_mean
+            document.getElementById(svg).appendChild(text)
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 50  );
+            text.setAttributeNS(null, 'y', 600 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = 'Original: '
+            document.getElementById(svg).appendChild(text)
+            
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 0)
+            myline.setAttribute('y1',  the_mean)
+            myline.setAttribute('x2', 1000)
+            myline.setAttribute('y2',  the_mean)
+            myline.setAttribute('opacity', 0)
+            myline.setAttribute('id', 'variance_mean_line')
+            myline.setAttribute('style', "stroke:gray;stroke-width:2")
+            document.getElementById(svg).appendChild(myline)
+
+            variance=0;
+            variance_circ_y_values.forEach(element => {
+                    variance += (element - the_mean)**2
+                })
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 600  );
+            text.setAttributeNS(null, 'y', 600 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.setAttributeNS(null, 'id', 'original_variance' );
+            text.textContent = parseInt(Math.sqrt(variance)*100)/100
+            document.getElementById(svg).appendChild(text)
+
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 450  );
+            text.setAttributeNS(null, 'y', 600 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = 'Original: '
+            document.getElementById(svg).appendChild(text)
+
+
+            text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 50  );
+            text.setAttributeNS(null, 'y', 550 );
+            text.setAttributeNS(null, 'font-size', 30 );
+            text.setAttributeNS(null, 'font-weight', 'bold' );
+            text.setAttributeNS(null, 'fill', 'black' );
+            text.textContent = 'MEAN: '
+            document.getElementById(svg).appendChild(text)
+
+            tl.add({
+                    targets: myline,
+                    'opacity': 1,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 300,
+                    loop: false,
+                    persist: true
+                })
+            
+                variance_mean_verticals.forEach(element => {
+                tl.add({
+                    targets: element,
+                    'opacity': 1,
+                    'y2':  the_mean,
+                    'stroke-width': 5,
+                   'stroke-dasharray': "10, 10",
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 300,
+                    loop: false,
+                    persist: true
+                })
+            })
+
+        }
+
+        counted = 0
+        weighted = 0
+        mean_calculated = 0
+        variance_calculated = 0
+        function variance_calculation(svg){
+            scale_svg = document.getElementById('scale_svg')
+            variance_svg = document.getElementById('variance_svg')
+            counting_svg = document.getElementById('counting_svg')
+            mean_svg = document.getElementById('mean_svg')
+
+            var scale_text = document.createElementNS(svgNS,"text");  
+            scale_text.setAttributeNS(null, 'x', i*1000/n  + 500/n  );
+            scale_text.setAttributeNS(null, 'y', 650 );
+            scale_text.setAttributeNS(null, 'font-size', 50 );
+            scale_text.setAttributeNS(null, 'fill', 'black' );
+            scale_text.textContent = 'Scale'
+            document.getElementById(svg).appendChild(scale_text)
+
+            var counting_text = document.createElementNS(svgNS,"text");  
+            counting_text.setAttributeNS(null, 'x', i*1000/n  + 500/n  );
+            counting_text.setAttributeNS(null, 'y', 650 );
+            counting_text.setAttributeNS(null, 'font-size', 30 );
+            counting_text.setAttributeNS(null, 'fill', 'black' );
+            counting_text.textContent = 'Counter'
+            document.getElementById(svg).appendChild(counting_text)
+
+            var variance_text = document.createElementNS(svgNS,"text");  
+            variance_text.setAttributeNS(null, 'x', i*1000/n  + 500/n  );
+            variance_text.setAttributeNS(null, 'y', 650 );
+            variance_text.setAttributeNS(null, 'font-size', 30 );
+            variance_text.setAttributeNS(null, 'fill', 'black' );
+            variance_text.textContent = 'Standar Deviation Calculator'
+            document.getElementById(svg).appendChild(variance_text)
+
+            var mean_text = document.createElementNS(svgNS,"text");  
+            mean_text.setAttributeNS(null, 'x', i*1000/n  + 500/n  );
+            mean_text.setAttributeNS(null, 'y', 650 );
+            mean_text.setAttributeNS(null, 'font-size', 30 );
+            mean_text.setAttributeNS(null, 'fill', 'black' );
+            mean_text.textContent = 'Mean Calculator'
+            document.getElementById(svg).appendChild(mean_text)
+
+            var alert_text = document.createElementNS(svgNS,"text");  
+            alert_text.setAttributeNS(null, 'x', 200  );
+            alert_text.setAttributeNS(null, 'y', 300 );
+            alert_text.setAttributeNS(null, 'font-size', 30 );
+            alert_text.setAttributeNS(null, 'fill', 'black' );
+            alert_text.setAttributeNS(null, 'id', 'alert_text' );
+            alert_text.textContent = ''
+            document.getElementById(svg).appendChild(alert_text)
+            
+            anime({
+                targets: scale_svg,
+                'x':  100,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+                })
+            anime({
+                targets: scale_text,
+                'x':  100,
+                'y': -10,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+            anime({
+                targets: variance_svg,
+                'x':  700,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+            anime({
+                targets: variance_text,
+                'x':  600,
+                'y': -10,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+            anime({
+                targets: counting_svg,
+                'x':  100,
+                'y':  250,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+            anime({
+                targets: counting_text,
+                'x':  100,
+                'y': 650,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+            anime({
+                targets: mean_svg,
+                'x':  700,
+                'y':  500,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+            anime({
+                targets: mean_text,
+                'x':  600,
+                'y': 650,
+                easing: 'easeInOutQuad',
+                duration: 1000,
+                persist: true
+            })
+        }
+    </script>
+
+</body>
+
+</html>

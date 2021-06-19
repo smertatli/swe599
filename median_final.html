@@ -1,0 +1,1097 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>MEAN</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.js' type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js" ></script>
+
+
+    <style>
+       html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+      
+        
+        .mytext {
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-name: popup;
+            transform-origin: center center;
+        }
+
+        @keyframes popup {
+            from {
+                font-size: 0;
+            }
+            to {
+                font-size: 5;
+            }
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .flex-container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-left {
+            width: 40%;
+            height: 80vh;
+            margin: 20px;
+            padding: 20px;
+            background: rgb(238, 246, 252);
+            border-radius: 5px;
+            border: 1px solid rgb(92, 92, 92);
+        }
+
+        .flex-right {
+            width: 60%;
+            margin: 20px;
+            padding: 20px;
+            background: rgb(238, 246, 252);
+            border-radius: 5px;
+            border: 1px solid rgb(92, 92, 92);
+            
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            display: table;
+            clear: both;
+        }
+
+        #btn {
+            width: 70%;
+            margin-left: 15%;
+            float: center;
+            position: relative;
+            background-color: #5bc0de;
+            color: white;
+        }
+
+      
+
+        .tab-content {
+            background-color: #ffffff;
+        }
+
+        .drop-active {
+            stroke:black;stroke-width:8
+        }
+
+        .drop-target {
+            fill: rgb(34, 238, 184);
+           
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    
+
+
+
+    <div id="smartwizard">
+        <ul class="nav">
+           <li>
+               <a class="nav-link" href="#step-1">
+                  MEDIAN
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-2">
+                  YOUR TURN
+               </a>
+           </li>
+           <li>
+            <a class="nav-link" href="#step-3">
+               PERCENTILES
+            </a>
+           </li>
+           <li>
+            <a class="nav-link" href="#step-4">
+                HISTOGRAM
+                </a>
+            </li>
+            <a class="nav-link" href="#step-5">
+                HISTOGRAM
+                </a>
+            </li>
+           
+        </ul>
+     
+        <div class="tab-content">
+            
+           <div id="step-1" class="tab-pane" role="tabpanel">
+            <div class="flex-container">
+            <div class="flex-left">
+            
+              <text><b><h1>MEDIAN</h1></b></text>
+              <p>
+              <text>Median is another useful statistic that is frequently used in the world of statistics.</text></p>
+              <p><text>To find the median, we need to sort the data in ascending or descending order and find the middle value. </text></p>
+              
+                
+              
+                
+                <input type='text' id='sample_size_input' style='margin-left: 25%;width: 50%;' placeholder="Enter sample size"></input>
+                <p> <button id="btn" onclick="generate_random_sample(document.getElementById('sample_size_input').value, 'svg1')">STEP 1 - GENERATE RANDOM SAMPLE</button>
+                 <button id="btn" onclick="sort_bars(document.getElementById('sample_size_input').value, 'svg1')">STEP 2 - SORT THE SAMPLE FROM MIN TO MAX</button> </p>
+            </div>
+          
+            <div class="flex-right" id='svg_div' >
+                <svg id='svg1' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                
+                <text id='sum'>0</text>
+              
+            </div>
+       
+               
+        
+           </div>
+          </div>
+       
+           <div id="step-2" class="tab-pane" role="tabpanel">
+            
+            <div class="flex-container">
+                <div class="flex-left">
+                
+                  <text><b><h1>MEDIAN</h1></b></text>
+                  <p>
+                  <text>It is your turn this time.</text></p>
+                  
+                  <p>
+                    <text>First sort the bars from shortest to smallest.</text></p>
+                    <text>Then click on the median.</text></p>
+                    <p> <button id="btn" onclick="generate_random_sample(11, 'svg2')">STEP 1 - GENERATE RANDOM SAMPLE</button>
+                     </p>
+                </div>
+              
+                <div class="flex-right" id='svg_div' >
+                    <svg id='svg2' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                        
+                    <text id='sum'>0</text>
+                  
+                </div>
+           
+                   
+            
+               </div>
+            </div>
+            <div id="step-3" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>PERCENTILES</h1></b></text>
+                      <p><text>As we have seen, the median is the element that resides at the center of the sorted elements. This is of course not the only location we are interested. We are also interested in
+                          other locations. For example, we may be interested in the point that 25% of our values in the sample are less than or equal to.   </text>
+                      
+                        <b>We usually call such points 'percentiles'.</b></text></p>
+
+                      <p><text>Take the minimum value of the sample for insantance. Since there is no value in the sample that is less than the minimum, we represent it as 0th percentile. 
+                          With the similar logic, we represent the maximum value of the sample as 100th percentile, as all the values are less than or equal to the maximum. 
+                          The similar logic can be applied to the median which is represented as the 50th percentile.</text></p>
+                     
+                      <p><text>Click the button below to generate bars with <b>random lengths</b> and see how the certain percentiles are located. 
+                        Here you will see that the intervals between 0 and 25, 25 and 50, 50 and 75, and 75 and 100 percentiles almost equal.</text></p>
+                        <p> <button id="btn" onclick="percentile('svg3','random')">STEP 1 - GENERATE RANDOM SAMPLE</button></p>
+
+                        <p><text>Click the button below to generate bars with <b>the same lengths</b> and see how the certain percentiles are located.
+                            Here you will see that 0, 25, 50, 75, and 100th percentiles are located in the same place.</text></p>
+                        <p> <button id="btn" onclick="percentile('svg3','equal')">STEP 1 - GENERATE RANDOM SAMPLE</button></p>
+
+                        <p><text>Click the button below to generate bars with  <b>a special random lengths</b> and see how the certain percentiles are located.
+                            Here you will see a totally different scenarios.</text></p>
+                        <p> <button id="btn" onclick="percentile('svg3','normal')">STEP 1 - GENERATE RANDOM SAMPLE</button></p>
+
+                        
+
+                        
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg3' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                            
+                        <text id='kkkk'>0</text>
+                        
+                    </div>
+
+                </div>
+            </div>
+           <div id="step-4" class="tab-pane" role="tabpanel">
+            <div class="flex-container">
+                <div class="flex-left">
+                
+                  <text><b><h1>HISTOGRAMS</h1></b></text>
+
+                  <p><text>As you may have notices, different kind of samples exhibit different percentile intervals.</text></p>
+                  <p><text>To visualize the patterns of percentiles that we have seen in the previous section, we need to organize our data into meaningful way so that we can visualize and see the percentile patterns. </text></p>
+                  
+                  <p><text>One great way is to create bins and group our data according to that bins. </text></p>
+                  
+                 
+
+                <p><text> For example, if you choose 50 for bin size, then it means: </text></p>
+                <p><text> Group elements that are between min and min+49 into the 1st bin, group elements that are between min+50 and min+99 into the 2nd bin,
+                    and so on. Then count how many values there are in each bin. Then divide the numbers with the total number of elements in the sample so that
+                    we can see that in percentage value that how many of our all elements in the sample falls in the specific bins.</text></p>
+                 
+
+                  <p><text>Click the button below to generate bars with <b>random lengths</b>. Then play with different bin size values so that
+                    you can create bins with different sizes. Then observe the graph below that shows the percentage of values in specific bins.  
+                    </text></p>
+                    <p> <button id="btn" onclick="histogram_intro('svg4','random')">GENERATE RANDOM SAMPLE</button></p>
+                    <p> <button id="btn" onclick="histogram_intro('svg4','equal')">GENERATE SAMPLE ALL ELEMENTS EQUAL</button></p>
+                    <p> <button id="btn" onclick="histogram_intro('svg4','normal')">GENERATE SAMPLE</button></p>
+                </div>
+              
+                <div class="flex-right" id='svg_div' >
+                    <svg id='svg4' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                        
+ 
+                    
+                </div>
+
+            </div>
+            </div>
+       
+
+            <div id="step-5" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                        <text><b><h1>NEXT SECTION --> STANDART DEVIATION</h1></b></text>
+                        
+                          <a href='variance.html' ><button>GO TO STANDART DEVIATION</button></a><p> </p>
+   
+                   
+                      
+                          
+                     </div>   
+    
+                </div>
+                    
+            </div>
+       
+        </div>
+    </div>
+
+       
+
+   
+
+    <script>
+        var sum_field = document.getElementById('sum');
+        var svgNS = "http://www.w3.org/2000/svg";  
+        var sample_size = 0
+
+        
+        $(document).ready(function () {
+             
+            var options = {
+                selected: 0,
+                theme: 'arrows',
+                enableURLhash: false,
+                transition: {
+                    animation: 'slide-horizontal', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+                },
+                toolbarSettings: {
+                    toolbarPosition: 'bottom', // both bottom
+                    toolbarButtonPosition: 'center', // both bottom
+                }
+            };
+            // SmartWizard initialize
+            $('#smartwizard').smartWizard(options);
+
+
+            $("svg").each(function(){
+                this.width = this.parentNode.width;
+                this.height = this.parentNode.height;
+            });
+            
+      
+
+            $('#range_from').on("input change", function() { document.getElementById('from_value').textContent='FROM: '+$('#range_from')[0].value; });
+            $('#range_to').on("input change", function() { document.getElementById('to_value').textContent='TO: '+$('#range_to')[0].value; });
+            $('#sample_size').on("input change", function() { document.getElementById('n_value').textContent='SIZE: '+$('#sample_size')[0].value; });
+            
+            
+
+
+        })
+
+        r_list = []
+        r_list_temp = []
+        y_loc = []
+        rects = []
+        function generate_random_sample(n, svg){
+            r_list = []
+            r_list_temp = []
+            y_loc = []
+            rects = []
+            while(document.getElementsByName('rects').length > 0){
+                try{
+                    document.getElementsByName('rects').forEach(element => {element.remove()})
+                } catch {
+                    
+                }
+            }
+
+            while(document.getElementsByName('texts').length > 0){
+                try{
+                    document.getElementsByName('texts').forEach(element => {element.remove()})
+                } catch {
+                    
+                }
+            }
+            
+            for(i=0; i<n;i++){
+                
+                r_val = Math.floor(Math.random()*300 *10)/10;
+                r_list.push(r_val);
+                r_list_temp.push(r_val);
+                y_loc.push(r_val + 200);
+                r_val_str = String(r_val).replace('.','')
+                id = 'rect'+r_val_str
+                
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*1000/n );
+                rect.setAttributeNS(null, 'y', r_val + 200);
+                rect.setAttributeNS(null, 'height', 0);
+                rect.setAttributeNS(null, 'width', 1000/n -5);
+                rect.setAttributeNS(null, 'original_x', i*1000/n);
+                rect.setAttributeNS(null, 'fill', '#b5e7f7');
+                rect.setAttributeNS(null, 'stroke', 'black');
+                rect.setAttributeNS(null, 'id', id);
+                rect.setAttributeNS(null, 'value', Math.round((300 - r_val)*10)/10);
+                rect.setAttributeNS(null, 'name', 'rects');
+                
+                if(svg=='svg2'){
+                    rect.setAttributeNS(null, 'class', "draggable")
+                }
+                rect.setAttributeNS(null, 'stroke', 'black');
+                rect.setAttributeNS(null, 'stroke-width', 1);
+                rect.setAttributeNS(null, 'onmouseover', "document.getElementById('"+id+"').setAttribute('fill', '#F6C70A');document.getElementById('"+id+"').setAttribute('stroke-width', 5);");
+                rect.setAttributeNS(null, 'onmouseout', "document.getElementById('"+id+"').setAttribute('fill', '#b5e7f7');document.getElementById('"+id+"').setAttribute('stroke-width', 1);");
+                document.getElementById(svg).appendChild(rect);  
+                rects.push(rect)
+
+                if(svg=='svg1'){
+                    var mytext = document.createElementNS(svgNS,"text");  
+                    mytext.setAttributeNS(null,  'x', i*1000/n + 20)
+                    mytext.setAttributeNS(null, 'y', r_val - 5 + 200)
+                    mytext.setAttributeNS(null, 'text-anchor', "middle")
+                    mytext.setAttributeNS(null, 'font-weight', "bold")
+                    mytext.setAttributeNS(null, 'font-size', "15")
+                    mytext.setAttributeNS(null, 'id', "text"+r_val_str)
+                    mytext.setAttributeNS(null, 'name', 'texts');
+                    mytext.textContent = Math.round((300 - r_val)*10)/10;
+                    document.getElementById(svg).appendChild(mytext); 
+                }
+                
+
+                anime({
+                    targets: '#'+id,
+                    height: 300-r_val,
+                    easing: 'easeInOutQuad',
+                    duration: 1000,
+                    loop: false,
+                    delay: i*10
+                });
+            }
+
+            
+
+            rects.sort((a, b) => (parseFloat(a.getAttribute('y')) < parseFloat(b.getAttribute('y'))) ? 1 : -1 )
+
+
+        
+        }
+
+
+        function sort_bars(n, svg){
+
+            var color_scale = chroma.scale(['#5bc0de', '#FF9671'])
+            r_list.sort(function(a, b) {
+                return b - a;
+            });
+
+            r_list_temp = r_list.slice();
+                        
+               
+            r_min = Math.min(...r_list)
+            r_max = Math.max(...r_list)
+            for(i=0; i<r_list.length;i++){
+                document.getElementById("rect"+String(r_list[i]).replace('.','')).setAttribute('onclick', "correct(this, "+n+")");
+                anime({
+                    targets: "#rect"+String(r_list[i]).replace('.','') ,
+                    x: i*1000/n,
+                    cy: 500,
+                    fill: color_scale((r_list[i]-r_min)/r_max).hex(),
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: false,
+                    delay: i*10
+                });
+
+                anime({
+                    targets: "#text"+String(r_list[i]).replace('.',''),
+                    x: i*1000/n + 25,
+                    cy: 500,
+                    fill: color_scale((r_list[i]-r_min)/r_max).hex(),
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: false,
+                    delay: i*10
+                });
+            }
+            var mytext = document.createElementNS(svgNS,"text");  
+            mytext.setAttributeNS(null,  'x', 500)
+            mytext.setAttributeNS(null, 'y', 600)
+            mytext.setAttributeNS(null, 'text-anchor', "middle")
+            mytext.setAttributeNS(null, 'font-weight', "bold")
+            mytext.setAttributeNS(null, 'font-size', "15")
+            mytext.setAttributeNS(null, 'id', "prompt")
+            mytext.setAttributeNS(null, 'name', 'prompt');
+            mytext.textContent = 'Which of the bars is the median bar? ';
+            document.getElementById(svg).appendChild(mytext); 
+
+            var mytext = document.createElementNS(svgNS,"text");  
+            mytext.setAttributeNS(null,  'x', 500)
+            mytext.setAttributeNS(null, 'y', 650)
+            mytext.setAttributeNS(null, 'text-anchor', "middle")
+            mytext.setAttributeNS(null, 'font-weight', "bold")
+            mytext.setAttributeNS(null, 'font-size', "15")
+            mytext.setAttributeNS(null, 'id', "prompt")
+            mytext.setAttributeNS(null, 'name', 'prompt');
+            mytext.textContent = 'Click on the median bar.';
+            document.getElementById(svg).appendChild(mytext); 
+
+            anime({
+                    targets: "#prompt",
+                    'font-size': 50,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: false,
+
+                });
+        }
+
+        function correct(elem, n){
+            mid = n%2==0?(n/2):Math.round(n/2) - 1
+            mid = mid==-1?0:mid
+           
+            if(parseInt((300-r_list[mid])) == parseInt(elem.getAttribute('value'))){
+                anime({
+                    targets: elem,
+                    fill: '#00FFB9',
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 200,
+                    loop: 5,
+
+                });
+
+
+                var mytext = document.createElementNS(svgNS,"text");  
+                mytext.setAttributeNS(null,  'x', 500)
+                mytext.setAttributeNS(null, 'y', 150)
+                mytext.setAttributeNS(null, 'text-anchor', "middle")
+                mytext.setAttributeNS(null, 'font-weight', "bold")
+                mytext.setAttributeNS(null, 'stroke', "black")
+                mytext.setAttributeNS(null, 'stroke-width', "1")
+                mytext.setAttributeNS(null, 'font-size', "0")
+                mytext.setAttributeNS(null, 'id', "bravo")
+      
+                mytext.textContent = 'YES, YOU FOUND THE MEDIAN!';
+                document.getElementById("svg1").appendChild(mytext); 
+
+                anime({
+                    targets: document.getElementById("bravo"),
+                    'font-size': 50,
+                    fill: '#5bc0de',
+                    easing: 'easeInOutQuad',
+                    duration: 1000,
+                    loop: false,
+                    delay: 10
+                });
+            } else {
+                anime({
+                    targets: elem,
+                    fill: '#FF5C5C',
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 200,
+                    loop: 5,
+                    persist: false
+
+                });
+            }
+
+
+        }
+
+
+                
+        // target elements with the "draggable" class
+        interact('.draggable')
+        .draggable({
+            // enable inertial throwing
+            inertia: true,
+            // keep the element within the area of it's parent
+            modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: true
+            })
+            ],
+            // enable autoScroll
+            autoScroll: true,
+
+            listeners: {
+            // call this function on every dragmove event
+            move: dragMoveListener,
+
+            // call this function on every dragend event
+            end (event) {
+                which_obj = event.target.getAttribute('id')
+                if(which_obj != 'percentile_line' && which_obj != 'bin_size'){
+                    closest = null;
+                    min_so_far=10000;
+                    rects.forEach(element => {
+                        diff_abs = Math.abs((parseFloat(element.getAttribute('x')) -( parseFloat(event.target.getAttribute('x')) )))
+                        
+                        if(diff_abs < min_so_far && element != event.target){
+                            min_so_far = diff_abs
+                            closest = element
+                        
+                        }
+                    })
+
+                    temp = parseFloat(closest.getAttribute('original_x'))
+                    closest.setAttribute('original_x', parseFloat(event.target.getAttribute('original_x')))
+            
+                    anime({
+                        targets: closest,
+                        x: parseFloat(event.target.getAttribute('original_x')) ,
+                        easing: 'easeInOutQuad',
+                        direction: 'alternate',
+                        duration: 500,
+                        loop: false,
+                        persist: true
+
+                    });
+                    
+                    
+                    event.target.setAttribute('original_x', temp)
+                    anime({
+                        targets: event.target,
+                        x: temp,
+            
+                        easing: 'easeInOutQuad',
+                        direction: 'alternate',
+                        duration: 500,
+                        loop: false,
+                        persist: true,
+
+                    });
+
+                    is_sorted = true
+                    setTimeout(function(){
+                    
+                        for(i=0; i<rects.length-1; i++){
+                            if(parseFloat(rects[i].getAttribute('x')) > parseFloat(rects[i+1].getAttribute('x'))){
+                                is_sorted = false
+                                break
+                            }
+                        }
+
+                        if(is_sorted){
+                            rects.sort((a, b) => (parseFloat(a.getAttribute('y')) < parseFloat(b.getAttribute('y'))) ? 1 : -1 )
+                            r_list.sort(function(a, b) {
+                                return b - a;
+                            });
+                            for(i=0; i<rects.length; i++){
+                                anime({
+                                    targets: rects[i],
+                                    'fill': '#0DB5FC',
+                                    'stroke-width': '5',
+                                    easing: 'easeInOutQuad',
+                                    direction: 'alternate',
+                                    duration: 500,
+                                    loop: 2,
+                                    persist: false,
+                                    delay: 100*i
+
+                                });
+                                
+                                rects[i].setAttribute('onclick', "correct(this, "+rects.length+")")
+                            }
+
+                           
+                        }
+                    }, 1010)
+                }
+                else if(which_obj != 'percentile_line'){
+                    try {
+                        while(document.getElementsByName('percentile_lines').length>0)
+                        {
+                            document.getElementsByName('percentile_lines').forEach(element => {element.remove()})
+                        }
+                    }
+                    catch{
+
+                    }
+                    
+                    
+                    draw_hist_lines(300-parseFloat(event.target.getAttribute('y')), event.target.parentNode)
+                    document.getElementById('bin_size_label').textContent = 'Bin size: ' + parseInt(300-parseFloat(event.target.getAttribute('y')))
+                }
+                
+
+                
+
+
+               
+
+               
+            }
+            }
+        })
+
+        function dragMoveListener (event) {
+
+           
+            
+            var target = event.target
+        
+
+            if(target.getAttribute('id') == 'percentile_line'){
+                svg = document.getElementById('svg3')
+            } else if(target.getAttribute('id') == 'bin_size'){
+                svg = document.getElementById('svg4')
+            } 
+            else {
+                svg = document.getElementById('svg2')
+            }
+            
+            var pt = svg.createSVGPoint();
+            pt.x = event.pageX;
+            pt.y = event.pageY;
+            pt = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+           
+            
+            
+
+            if(target.getAttribute('id') == 'percentile_line'){
+                target.setAttribute('x1', pt.x );
+                target.setAttribute('x2', pt.x );
+                document.getElementById('percentile_text').setAttribute('x', pt.x );
+                draw_cumulative_perc(pt.x, event.target.parentNode)
+            } else if(target.getAttribute('id') == 'bin_size'){
+                if(pt.y < 280 && pt.y > -100){
+                    target.setAttribute('y', pt.y );          
+                }
+
+                
+                     
+            }
+            else {
+                target.setAttribute('x', pt.x-(1000/11)/2);
+                //target.setAttribute('data-y', y);
+            }
+            
+            
+            
+            
+
+
+        }
+
+        bin_levels = []
+        function draw_hist_lines(size, svg){
+            n = parseInt(320 / size)+1
+            bin_levels=[]
+            for(i =0; i<=n; i++){
+                var myline = document.createElementNS(svgNS,"line"); 
+                myline.setAttribute('x1', 0)
+                myline.setAttribute('y1', 300 - size*i)
+                myline.setAttribute('x2', 1000)
+                myline.setAttribute('y2', 300 - size*i)
+                myline.setAttribute('name', 'percentile_lines')
+                myline.setAttribute('style', "stroke:gray;stroke-width:2")
+                myline.setAttribute('stroke-dasharray', "5, 5")
+                svg.appendChild(myline)
+                bin_levels.push(300 - size*i)
+            }
+
+            draw_hist_bars(n,svg);
+        }
+
+        function draw_hist_bars(n,svg){
+            try {
+                while(document.getElementsByName('hist_bars').length>0)
+                {
+                    document.getElementsByName('hist_bars').forEach(element => {element.remove()})
+                }
+            }
+            catch{
+
+            }
+
+
+            try {
+                while(document.getElementsByName('hist_bin_texts').length>0)
+                {
+                    document.getElementsByName('hist_bin_texts').forEach(element => {element.remove()})
+                }
+            }
+            catch{
+
+            }
+
+      
+            for(i=0;i<=n;i++){
+                curr = bin_levels[i]
+                next = bin_levels[i+1]
+                counter=0
+                rands.forEach(element => {
+                    if(element> next && element <= curr){
+                        counter++
+                    }
+                })
+               
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*900/n+50 );
+                rect.setAttributeNS(null, 'y', 500 - counter/rands.length * 150 -1);
+                rect.setAttributeNS(null, 'height', counter/rands.length * 150+1);
+                rect.setAttributeNS(null, 'width', 900/n  );
+                rect.setAttributeNS(null, 'name', 'hist_bars'  );
+                rect.setAttributeNS(null, 'fill', '#b5e7f7');
+                rect.setAttributeNS(null, 'stroke', 'black');
+                svg.appendChild(rect)
+
+                var mytext = document.createElementNS(svgNS,"text"); 
+                mytext.setAttribute('x', i*900/n+75)
+                mytext.setAttribute('y',500 - counter/rands.length * 150 - 10)
+                mytext.setAttribute('name', 'hist_bin_texts')
+                mytext.setAttributeNS(null, 'font-weight', "bold")
+                mytext.setAttributeNS(null, 'font-size', "20")
+                mytext.textContent = parseInt(counter/rands.length * 100) + '%'
+                svg.appendChild(mytext)
+
+                var mytext = document.createElementNS(svgNS,"text"); 
+                mytext.setAttribute('x', ((i*900/n) + ((i+1)*900/n)) / 2 + 20)
+                mytext.setAttribute('y',520)
+                mytext.setAttribute('name', 'hist_bin_texts')
+                mytext.setAttributeNS(null, 'font-weight', "bold")
+                mytext.setAttributeNS(null, 'font-size', "15")
+                mytext.textContent = '['+parseInt(300 - curr) +', ' + parseInt(300 - next) + ')'
+                svg.appendChild(mytext)
+
+           
+               
+        
+            }
+        }
+
+        last_pop = 0
+        active_set = []
+        
+      
+        window.dragMoveListener = dragMoveListener
+
+
+        ntile_rects = []
+        percentile_balls = []
+        function percentile(svg, type){
+
+            while(ntile_rects.length > 0){
+                ntile_rects.pop().remove()
+            }
+
+            while(percentile_balls.length > 0){
+                percentile_balls.pop().remove()
+            }
+
+            try {document.getElementById('percentile_line').remove()} 
+            catch{}
+
+            while(document.getElementsByName('zlines').length > 0){
+                try{
+                    document.getElementsByName('zlines').forEach(element => {element.remove()})
+                } catch {
+                    
+                }
+            }
+
+            while(document.getElementsByName('percent_labels').length > 0){
+                try{
+                    document.getElementsByName('percent_labels').forEach(element => {element.remove()})
+                } catch {
+                    
+                }
+            }
+
+            
+
+            n = 100
+            rands = []
+
+       
+
+            rand_num = parseInt(Math.random()*500)
+            for(i = 0; i<n; i++){
+                    //rands.push(parseInt(Math.random()*500))
+                    if(type=='normal'){
+                        rands.push(parseInt(randn_bm()*500))
+                    } else if (type=='equal'){
+                        rands.push(rand_num)
+                    } else if (type=='random'){
+                        rands.push(parseInt(Math.random()*500))
+                    }
+            }
+
+            rands.sort(function(a, b){return b - a});
+
+            for(i = 0; i<n; i++){
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*900/n + 50);
+                rect.setAttributeNS(null, 'y', rands[i]);
+                rect.setAttributeNS(null, 'height', 500 - rands[i]);
+                rect.setAttributeNS(null, 'width', 900/n  );
+                rect.setAttributeNS(null, 'original_x', i*950/n + 50);
+                rect.setAttributeNS(null, 'fill', '#b5e7f7');
+                rect.setAttributeNS(null, 'stroke', 'black');
+                document.getElementById(svg).appendChild(rect)
+                ntile_rects.push(rect)
+            }
+
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 20)
+            myline.setAttribute('y1', 0)
+            myline.setAttribute('x2', 20)
+            myline.setAttribute('y2', 500)
+            myline.setAttribute('id', 'percentile_line')
+            myline.setAttribute('class', 'draggable')
+            myline.setAttribute('style', "stroke:#E0AD53;stroke-width:10")
+            myline.setAttribute('stroke-dasharray', "20, 5")
+            document.getElementById(svg).appendChild(myline)
+
+            var mytext = document.createElementNS(svgNS,"text"); 
+            mytext.setAttribute('x', 10)
+            mytext.setAttribute('y', -10)
+            mytext.setAttribute('id', 'percentile_text')
+            mytext.setAttributeNS(null, 'font-weight', "bold")
+            mytext.setAttributeNS(null, 'font-size', "50")
+            mytext.textContent = ''
+            document.getElementById(svg).appendChild(mytext)
+
+            var mytext = document.createElementNS(svgNS,"text"); 
+            mytext.setAttribute('x', 10)
+            mytext.setAttribute('y', -50)
+            mytext.setAttribute('id', 'percentile_text')
+            mytext.setAttributeNS(null, 'font-weight', "bold")
+            mytext.setAttributeNS(null, 'font-size', "20")
+            mytext.textContent = 'Move this line to right to see the percentiles >>---------->>----------------->>---------------->>------------->>'
+            document.getElementById(svg).appendChild(mytext)
+            
+        }
+
+        
+        function draw_cumulative_perc(x, svg){
+            sum = 0
+            max_y = 0
+            ntile_rects.forEach(element => {
+                if(element.getAttribute('x') <= x){
+                    sum++
+                }
+            })
+         
+
+            document.getElementById('percentile_text').textContent = parseInt(sum / ntile_rects.length*100) + '%'
+
+            var ball = document.createElementNS(svgNS,"circle");  
+            ball.setAttributeNS(null, 'cx', x );
+            ball.setAttributeNS(null, 'cy', 500 - (sum / ntile_rects.length)*500);
+            ball.setAttributeNS(null, 'r', 2 );
+            ball.setAttributeNS(null, 'fill', '#E87658');
+            ball.setAttributeNS(null, 'stroke', 'black');
+            svg.appendChild(ball)
+            percentile_balls.push(ball)
+
+            if(parseInt((sum / ntile_rects.length)*100) % 25 == 0 && sum>=0){
+                
+                var myline = document.createElementNS(svgNS,"line"); 
+                myline.setAttribute('x1', 0)
+                myline.setAttribute('y1', sum==0?rands[0]:rands[parseInt((sum / ntile_rects.length)*100) - 1])
+                myline.setAttribute('x2', 1000)
+                myline.setAttribute('y2', sum==0?rands[0]:rands[parseInt((sum / ntile_rects.length)*100) -1])
+                myline.setAttribute('name', 'zlines')
+                myline.setAttribute('style', "stroke:#394FED;stroke-width:4")
+                myline.setAttribute('stroke-dasharray', "20, 5")
+                svg.appendChild(myline)
+
+                var mytext = document.createElementNS(svgNS,"text"); 
+                mytext.setAttribute('x', 10)
+                mytext.setAttribute('y', sum==0?rands[0]:rands[parseInt((sum / ntile_rects.length)*100) -1]-10 )
+                mytext.setAttribute('id', 'percentile_text')
+                mytext.setAttributeNS(null, 'font-weight', "bold")
+                mytext.setAttributeNS(null, 'font-size', "20")
+                mytext.setAttributeNS(null, 'name', "percent_labels")
+                mytext.textContent = parseInt((sum / ntile_rects.length)*100) + 'th percentile'
+                svg.appendChild(mytext)
+               
+            }
+        }
+
+
+        function randn_bm() {
+            let u = 0, v = 0;
+            while(u === 0) u = Math.random(); //Converting [0,1) to (0,1)
+            while(v === 0) v = Math.random();
+            let num = Math.sqrt( -2.0 * Math.log( u ) ) * Math.cos( 2.0 * Math.PI * v );
+            num = num / 10.0 + 0.5; // Translate to 0 -> 1
+            if (num > 1 || num < 0) return randn_bm() // resample between 0 and 1
+            return num
+        }
+
+        ntile_rects = []
+        percentile_balls = []
+        values_texts = []
+        function histogram_intro(svg, type){
+
+            while(ntile_rects.length > 0){
+                ntile_rects.pop().remove()
+            }
+
+            while(percentile_balls.length > 0){
+                percentile_balls.pop().remove()
+            }
+
+            while(values_texts.length > 0){
+                values_texts.pop().remove()
+            }
+
+            try {document.getElementById('percentile_line').remove()} 
+            catch{}
+
+            try {document.getElementById('bin_size').remove()} 
+            catch{}
+
+            
+
+            
+
+            n = 50
+            rands = []
+
+            rand_num = parseInt(Math.random()*300)
+            for(i = 0; i<n; i++){
+                    //rands.push(parseInt(Math.random()*300))
+                    if(type=='normal'){
+                        rands.push(parseInt(randn_bm()*300))
+                    } else if (type=='equal'){
+                        rands.push(rand_num)
+                    } else if (type=='random'){
+                        rands.push(parseInt(Math.random()*300))
+                    }
+            }
+
+            rands.sort(function(a, b){return b - a});
+
+            for(i = 0; i<n; i++){
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*900/n + 50);
+                rect.setAttributeNS(null, 'y',   rands[i]);
+                rect.setAttributeNS(null, 'height', 300 - rands[i]);
+                rect.setAttributeNS(null, 'width', 900/n  );
+                rect.setAttributeNS(null, 'original_x', i*950/n + 50);
+                rect.setAttributeNS(null, 'fill', '#b5e7f7');
+                rect.setAttributeNS(null, 'stroke', 'black');
+                document.getElementById(svg).appendChild(rect)
+                ntile_rects.push(rect)
+
+                var mytext = document.createElementNS(svgNS,"text"); 
+                mytext.setAttribute('x', i*900/n + 60)
+                mytext.setAttribute('y',   rands[i] + 15)
+                mytext.setAttributeNS(null, 'font-weight', "bold")
+                mytext.setAttributeNS(null, 'font-size', "15")
+                mytext.setAttributeNS(null, 'transform', "rotate(-90 "+(i*900/n + 50)+","+rands[i]+")")
+                mytext.textContent = 300 - rands[i]
+                document.getElementById(svg).appendChild(mytext)
+                values_texts.push(mytext)
+            }
+
+           
+
+           
+
+            var myline = document.createElementNS(svgNS,"line"); 
+            myline.setAttribute('x1', 20)
+            myline.setAttribute('y1', 0)
+            myline.setAttribute('x2', 20)
+            myline.setAttribute('y2', 300)
+            myline.setAttribute('id', 'percentile_line')
+
+            myline.setAttribute('style', "stroke:gray;stroke-width:4")
+            myline.setAttribute('stroke-dasharray', "20, 5")
+            document.getElementById(svg).appendChild(myline)
+
+            var rect = document.createElementNS(svgNS,"rect");  
+            rect.setAttributeNS(null, 'x', 10);
+            rect.setAttributeNS(null, 'y', 200);
+            rect.setAttributeNS(null, 'height', 20);
+            rect.setAttributeNS(null, 'width', 20);
+            rect.setAttribute('class', 'draggable')
+            rect.setAttribute('id', 'bin_size')
+            rect.setAttributeNS(null, 'fill', '#b5e7f7');
+            rect.setAttributeNS(null, 'stroke', 'black');
+            document.getElementById(svg).appendChild(rect)
+            
+            var mytext = document.createElementNS(svgNS,"text"); 
+            mytext.setAttribute('x', 10)
+            mytext.setAttribute('y', -50)
+            mytext.setAttributeNS(null, 'font-weight', "bold")
+            mytext.setAttributeNS(null, 'font-size', "20")
+            mytext.setAttributeNS(null, 'id', "bin_size_label")
+            mytext.textContent = 'Bin size: '
+            document.getElementById(svg).appendChild(mytext)
+            values_texts.push(mytext)
+
+            
+        }
+
+    </script>
+
+</body>
+
+</html>

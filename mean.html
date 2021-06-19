@@ -1,0 +1,1968 @@
+<!doctype html>
+
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>MEAN</title>
+    <meta name="description" content="The HTML5 Herald">
+    <meta name="author" content="SitePoint">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/css/smart_wizard_all.min.css" rel="stylesheet" type="text/css" />
+
+    <!-- JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/smartwizard@5/dist/js/jquery.smartWizard.min.js" type="text/javascript"></script>
+
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.js' type="text/javascript"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/rangeslider.js/2.3.3/rangeslider.min.css" rel="stylesheet" type="text/css" />
+    
+    <script src="https://unpkg.com/interactjs/dist/interact.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.1.0/chroma.min.js" ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.13.0/Sortable.min.js" ></script>
+    
+
+    <style>
+       html, body {
+            margin: 0;
+            height: 100%;
+        }
+
+      
+        
+        .mytext {
+            animation-duration: 0.5s;
+            animation-iteration-count: 1;
+            animation-name: popup;
+            transform-origin: center center;
+        }
+
+        @keyframes popup {
+            from {
+                font-size: 0;
+            }
+            to {
+                font-size: 5;
+            }
+        }
+
+        /* Create three equal columns that floats next to each other */
+        .flex-container{
+            display: flex;
+            flex-direction: row;
+        }
+
+        .flex-left {
+            width: 40%;
+            height: 80vh;
+            margin: 20px;
+            padding: 20px;
+            background: rgb(238, 246, 252);
+            border-radius: 5px;
+            border: 1px solid rgb(92, 92, 92);
+        }
+
+        .flex-right {
+            width: 60%;
+            margin: 20px;
+            padding: 20px;
+            background: rgb(238, 246, 252);
+            border-radius: 5px;
+            border: 1px solid rgb(92, 92, 92);
+            
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            display: table;
+            clear: both;
+        }
+
+        #btn {
+            width: 100%;
+            float: center;
+            position: relative;
+            background-color: #5bc0de;
+            color: white;
+        }
+
+      
+
+        .tab-content {
+            background-color: #ffffff;
+        }
+
+        .drop-active {
+            stroke:black;stroke-width:8
+        }
+
+        .drop-target {
+            fill: rgb(34, 238, 184);
+           
+        }
+    </style>
+
+    
+</head>
+
+<body>
+    
+
+
+
+    <div id="smartwizard">
+        <ul class="nav">
+           <li>
+               <a class="nav-link" href="#step-1">
+                  MEAN
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-2">
+                  PROPERTIES OF MEAN 1
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-3">
+                PROPERTIES OF MEAN 2
+               </a>
+           </li>
+           <li>
+               <a class="nav-link" href="#step-4">
+                PROPERTIES OF MEAN 3
+               </a>
+           </li>
+           <li>
+                <a class="nav-link" href="#step-5">
+                PROPERTIES OF MEAN 4
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#step-6">
+                PROPERTIES OF MEAN 5
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#step-7">
+                PROPERTIES OF MEAN 5
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#step-8">
+                PROPERTIES OF MEAN 5
+                </a>
+            </li>
+            <li>
+                <a class="nav-link" href="#step-9">
+                PROPERTIES OF MEAN 5
+                </a>
+            </li>
+        </ul>
+     
+        <div class="tab-content">
+            
+           <div id="step-3" class="tab-pane" role="tabpanel">
+            <div class="flex-container">
+            <div class="flex-left">
+            
+              <text><b><h1>MEAN</h1></b></text>
+              <p>
+              <text>To get a feeling of how mean are equalizing all the elements first enter a number between 5 and 50 into <b>Sample Size</b> textbox.  </text></p>
+              <p><text>Then click on GENERATE button to generate the desired number of bars with varying heights.</text></p>
+                
+             
+              <p><text><b>Tips:</b></text></p>
+
+                <p><text><b>--> </b>First enter 5 into Sample Size and generate 5 bars. Then play with the animation to see how decreases in some bars are compansated with the increases in other bars.</text></p>
+                <p><text><b>--> </b>Then enter 20 into Sample Size and generate 20 bars. Then play with the animation to see how decreases in some bars are compansated with the increases in other bars.</text></p>
+         
+                <input type='text' id='sample_size_input' placeholder='Sample Size'></input>
+                <p> <button id="btn" onclick="generate_random_sample(document.getElementById('sample_size_input').value, 'svg1')">GENERATE</button>
+                </p>
+            </div>
+          
+            <div class="flex-right" id='svg_div' >
+                <svg id='svg1' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                
+                <text id='sum'>0</text>
+              
+            </div>
+       
+               
+        
+           </div>
+          </div>
+       
+           <div id="step-4" class="tab-pane" role="tabpanel">
+            
+            <div class="flex-container">
+                <div class="flex-left">
+                
+                  <text><b><h1>MEAN</h1></b></text>
+                  <p>
+                    <text>This time you will be equalizing the volume of the circles while keeping the total volume the same.</text></p>
+            
+                    <p> <button id="btn" onclick="generate_circles(5, 'svg2')">STEP 1 - GENERATE RANDOM SAMPLE</button>
+                     </p>
+                </div>
+              
+                <div class="flex-right" id='svg_div' >
+                    
+                    <svg id='svg2' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                    
+                    <text id='sum'>0</text>
+                  
+                </div>
+           
+                   
+            
+               </div>
+            </div>
+            <div id="step-1" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>MEAN</h1></b></text>
+                      <p></p>
+                      <text>Mean is the most straightforward, basic, and useful statistic in the world of statistics.</text></p>
+                      <p><text>The formula to calculate the mean is as follows: </text></p>
+                      <img
+                        src="https://svgshare.com/i/Y0L.svg"
+                        alt="triangle with all three sides equal"
+                        height="100"
+                        width="300"/>
+                      
+                        <p>It is simply the sum of all the elemens divided by the total number of elements.</p>
+                        <p>In other words, it is all about equalizing all the elements in the sample.</p>
+
+                        <p>The animation on the right side shows bars with different heights. To see how the length of the bars are equalized, click <b>RUN</b> button below.</p>
+                       
+                        <p> <button id="btn" onclick="animate_mean('svg3')">RUN</button>
+                         </p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        
+                        <svg id='svg3' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+               </div>
+            </div>
+           <div id="step-5" class="tab-pane" role="tabpanel">
+            <div class="flex-container">
+                <div class="flex-left">
+                
+                  <text><b><h1>MEAN</h1></b></text>
+                  <p><text>Mean can be sensitive to small and large values. </text></p>
+                  <p><text>The meaning of 'small' and 'large' depends on the nature of sample we are working with. </text></p>
+
+                  <p><text>To get a feeling, click the button below to generate bars with random lengths. You will see that one of those bars 
+                      has a large value compared to other bars in the sample. Push the bar below slowly to see how the effect of that large bar
+                    is translated into other bars to make them equal!</text></p>
+                    
+                    <p> <button id="btn" onclick="generate_random_sample(2, 'svg4')">GENERATE RANDOM SAMPLE OF 2 ELEMENTS</button></p>
+                    <p> <button id="btn" onclick="generate_random_sample(5, 'svg4')">GENERATE RANDOM SAMPLE OF 5 ELEMENTS</button></p>
+                </div>
+              
+                <div class="flex-right" id='svg_div' >
+                    <svg id='svg4' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                    
+                    <text id='sum'>0</text>
+                  
+                </div>
+               </div>
+            </div>
+       
+
+            <div id="step-6" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>MEAN</h1></b></text>
+                      <p>
+                      <text>This time, click the button below to generate 20 bars with random lengths. Again, you will see that one of those bars 
+                        has a large value compared to other bars in the sample. Push the bar below slowly to see how the effect of that large bar
+                      is translated into other bars to make them equal!</text></p>
+                       
+                        <p> <button id="btn" onclick="generate_random_sample(20, 'svg5')">GENERATE RANDOM SAMPLE</button></p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg5' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+                   </div>   
+            </div>
+
+
+            <div id="step-7" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>MEAN</h1></b></text>
+                      <p>
+                        <text>The takeaway in the last two section is that the mean is sensitive to the very large or very small values.</text></p>
+
+                        <p><text>But the degree of sensitivity is largely controlled by the <b>sample size</b>!</text></p>
+
+                        <p><text>When you have fewer values in the sample, you have fewer places to distribute the large value!</text></p>
+                        <p><text>On the other hand, if you have many values in the sample, you have many places to distribute the large value! Therefore, other values are effected relatively less in this scenario compared to the previous one!</text></p>
+                      
+                        <p><text>Let's assume that we have a sample with one element, a sample with two elements, ..., a sample with 20 elements in it, but all of them have the 
+                            same mean which is 100. <b>Does adding a large value of 350 to each of them affect their mean similarly?</b>  </text></p>
+                      
+                        <p><text>The range below goes from 1 to 20. Play with the range to change the initial sample size and see the <b>effect of sample size on mean</b>.</text></p>
+
+                        <p><text>For example, if you choose 1 as INITIAL SAMPLE SIZE, then it means you are starting with a sample with one element in it whose value is 100.
+                            Then <b>'Sample size: 2'</b> on the right animations mean that when you added the large value of 350 into the sample, the new sample size will be 2. Therefore, the 
+                            new mean will be (100 + 350) / 2 = 225. 
+                        </text></p>
+
+                        
+                        <input style="width: 50%" 
+                            id='sample_size_slider'
+                            type="range"
+                            min="1"                    
+                            max="20"                 
+                            step="1"                   
+                            value="50"                 
+                            data-orientation="horizontal"  
+                            oninput="mean_effect('svg6')"
+                        >
+                        <p id = 'from_value'>INITIAL SAMPLE SIZE:</p>
+                    </div>
+                  
+                    <div class="flex-right" id='svg_div' >
+                        <svg id='svg6' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                        
+                        <text id='sum'>0</text>
+                      
+                    </div>
+                   </div>   
+            </div>
+
+
+            <div id="step-2" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>MEAN</h1></b></text>
+                      <p>
+                      <text>Remember that the formula for calculationg the mean is as follows:</text></p>
+                      
+                        
+                      <img
+                        src="https://svgshare.com/i/Y0L.svg"
+                        alt="triangle with all three sides equal"
+                        height="100"
+                        width="300" />
+                      
+                         
+                        <p><text>To interactively calculate the mean, click the button below to generate 4 buckets with a certain number of strawberries in it. </text></p>
+                        <p><text>Then click on each of them so that the lift will pick it and add it to the total.</text></p>
+
+                        <p><text>Once you have picked all of them, the mean will be calculated automatically by dividing the total to the number of total buckets which is 4.</text></p>
+                      
+                        <p> <button id="btn" onclick="create_hook_animation('svg7')">GENERATE RANDOM BUCKETS</button></p>
+ 
+                        </div>
+                    
+                        <div class="flex-right" id='svg_div' >
+                            <svg id='svg7' width=100% height=100% viewBox="0 0 1000 500">
+                                <svg id='hook' class='draggable' x=500 y=0>
+                                    <path transform='scale(0.3)' d="M413.711,100.117l-32-80C376.852,7.969,365.086,0,352,0H160c-13.086,0-24.852,7.969-29.711,20.117l-32,80  c-3.055,7.625-3.055,16.141,0,23.766l32,80C135.148,216.031,146.914,224,160,224h16c0,17.672,14.328,32,32,32h16v12.289  c0,38.055,20.82,72.805,53.031,88.539C293.664,364.961,304,381.5,304,399.992c0,25.57-22.438,48.008-48.008,48.008  C229.531,448,208,426.469,208,400c0-17.672-14.328-32-32-32s-32,14.328-32,32c0,61.758,50.242,112,111.992,112  C316.703,512,368,460.703,368,399.992c0-43.141-24.094-81.711-62.875-100.664C294.719,294.242,288,282.063,288,268.289V256h16  c17.672,0,32-14.328,32-32h16c13.086,0,24.852-7.969,29.711-20.117l32-80C416.766,116.258,416.766,107.742,413.711,100.117z   M181.334,176H147.6l42.666-128H224L181.334,176z M251.534,176H217.8l42.666-128H294.2L251.534,176z M321.734,176H288l42.666-128  H364.4L321.734,176z"/>
+                                </svg>    
+                                <svg id='bucket' class='' x=50 y=400 style='display: none'>
+                                    <g transform="scale(0.3)"
+                                    fill="#000000" stroke="none">
+                                    <path d="M449.55,240.1c0-31.7-52.3-58.9-126.7-70.3C311.25,93.2,286.45,0,234.25,0c-85.1,0-91.4,127.4-91.7,174.1
+                                    c-61.6,13.1-103.1,37.8-103.1,66c0,17.2,63.3,202.1,63.3,202.1c1,5.2,5.2,9.4,9.4,11.4c47.9,26,92.6,35.4,132.1,35.4
+                                    c77,0,130-33.3,134.2-37.5c4.2-2.1,7.3-6.2,8.3-10.4C386.55,441.1,449.55,254.5,449.55,240.1z M403.95,240.1
+                                    c0,12.3-28.1,23.1-70.8,29.5l-0.7-1.2c0,0-0.9-24.4-4.6-58.5C373.55,216.1,403.95,227.3,403.95,240.1z M226.75,42.8
+                                    c25.7,0,42.4,62.5,52.6,122.4c-11.3-0.7-23-1.1-34.9-1.1c-22,0-43.1,1.3-63,3.7l0.7-0.4C182.15,167.3,179.95,42.8,226.75,42.8z
+                                    M244.35,204.6c14.1,0,27.9,0.4,40.9,1.2c5,38,7,67.6,7,67.6l0.5,0.4c-15.3,1.1-31.6,1.7-48.5,1.7c-88.1,0-159.6-15.9-159.6-35.5
+                                    C84.85,220.5,156.25,204.6,244.35,204.6z M350.15,421.4c-23.9,12.5-111.3,52-212.2,0l-37.9-127.2c37.1,13.6,88.1,22,144.4,22
+                                    c56.2,0,107.1-8.4,144.1-21.9L350.15,421.4z"/>
+                                </svg>
+                                
+                            </svg>
+                            <text id='sum'>0</text>
+                        
+                        </div>
+                   </div>   
+            </div>
+
+            <div id="step-8" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                        <p><text>As you can see on the previous section that the effect of very large value is reduced as the initial sample size increases.</text></p>
+                        <p><text>To see the effects of all the things we have seen so far, you can play with animation on the right.</text></p>
+
+                        <p><text>First, click the <b>START</b> button below.</text></p>
+                        <p><text>Click on the <b>GREEN CIRCLE</b> below to add element to the sample.</text></p>
+
+                        <p><text>The <b>dashed black line</b> shows the mean of your sample.</text></p>
+
+                        <p><text>You can increase or decrease each value by <b>dragging the purple thick line </b> on top of it.</text></p>
+
+                        <p><text>You can remove any element by <b>clicking the red box below them </b> </text></p>
+
+                        <p><text>Observe how mean change with different number of elements.</text></p>
+                      
+                      
+                      <p> <button id="btn" onclick="mean_dynamic('svg8')">START</button></p>
+                 
+                     
+                        
+                   </div>   
+                   <div class="flex-right" id='svg_div' >
+                    <svg id='svg8' width=100% height=100% viewBox="0 0 1000 500"></svg>
+                </div>
+                </div>
+
+                
+            </div>
+
+            <div id="step-9" class="tab-pane" role="tabpanel">
+                <div class="flex-container">
+                    <div class="flex-left">
+                    
+                      <text><b><h1>NEXT SECTION --> MEDIAN</h1></b></text>
+                      
+                        <a href='{median_final.html}' ><button>GO TO MEDIAN</button></a><p> </p>
+ 
+                 
+                    
+                        
+                   </div>   
+                </div>
+            </div>
+       
+        </div>
+    </div>
+
+       
+
+   
+
+    <script>
+        var sum_field = document.getElementById('sum');
+        var svgNS = "http://www.w3.org/2000/svg";  
+        var sample_size = 0
+
+        
+        $(document).ready(function () {
+             
+            var options = {
+                selected: 0,
+                theme: 'arrows',
+                enableURLhash: false,
+                transition: {
+                    animation: 'slide-horizontal', // Effect on navigation, none/fade/slide-horizontal/slide-vertical/slide-swing
+                },
+                toolbarSettings: {
+                    toolbarPosition: 'bottom', // both bottom
+                    toolbarButtonPosition: 'center', // both bottom
+                },
+                keyboardSettings: {
+                    keyNavigation: false
+                },
+            };
+            // SmartWizard initialize
+            $('#smartwizard').smartWizard(options);
+
+
+            $("svg").each(function(){
+                this.width = this.parentNode.width;
+                this.height = this.parentNode.height;
+            });
+            
+            
+        })
+
+        function animate_mean(svg){
+            try{document.getElementById('linex').remove()}
+            catch {
+
+            }
+
+            generate_random_sample(20, svg)
+            the_mean = y_list.reduce((a, b) => a + b, 0)/y_list.length
+            var myline = document.createElementNS(svgNS,"line");  
+            myline.setAttributeNS(null,  'x1', 0)
+            myline.setAttributeNS(null, 'y1', the_mean)
+            myline.setAttributeNS(null,  'x2', 1000)
+            myline.setAttributeNS(null, 'y2', the_mean)
+            myline.setAttributeNS(null, 'fill', '#F6C70A')
+            myline.setAttributeNS(null, 'id', 'linex')
+            myline.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+            myline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+            document.getElementById(svg).appendChild(myline); 
+            bars.forEach(element => {
+                anime({
+                    targets: element,
+                    y: the_mean,
+                    height: 500-the_mean,
+                    fill: '#F6C70A',
+                    easing: 'easeInOutQuad',
+                    duration: 4000,
+                    loop: false,
+                    delay: 1000
+                });
+                
+            })
+        }
+
+        y_list = []
+        r_list_temp = []
+        y_loc = []
+        bars = []
+        surplus = 0
+        min_level = 1000
+        max_level = 0
+        increments = []
+        prev_act_length = 0
+        prev_y = 0
+        max_levels = []
+        previous_how_many = 0
+
+        function reset_metrics(){
+            active_bars = []
+            inactive_bars = bars.slice();
+            y_list = []
+            r_list_temp = []
+            y_loc = []
+            bars = []
+            bars_behind = []
+            surplus = 0
+            min_level = 1000
+            max_level = 0
+            increments = []
+            prev_act_length = 0
+            prev_y = 0
+            max_levels = []
+            previous_how_many = 0
+        }
+
+        function generate_random_sample(n, svg){
+            reset_metrics()
+            y_list = []
+            bars = []
+            while(document.getElementsByName('rects').length > 0){
+                try{
+                    document.getElementsByName('rects').forEach(element => {element.remove()})
+                } catch {
+                    
+                }
+            }
+
+            while(document.getElementsByName('texts').length > 0){
+                try{
+                    document.getElementsByName('texts').forEach(element => {element.remove()})
+                } catch {
+                    
+                }
+            }
+
+        
+            try{
+                document.getElementById('level').remove()
+            } catch {
+                
+            }
+        
+            
+            
+            for(i=0; i<n;i++){
+                
+
+
+                if(svg=='svg4' || svg=='svg5'){
+                    
+                    y_val = i==n-1?Math.floor(Math.random()*100)+200:Math.floor(Math.random()*100) + 400;
+                } else {
+                    y_val = Math.floor(Math.random()*300) + 200;
+                }
+
+                
+                y_list.push(y_val);
+                id = 'rect'+i
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*1000/n );
+                rect.setAttributeNS(null, 'y', y_val);
+                rect.setAttributeNS(null, 'height', 500-y_val);
+                rect.setAttributeNS(null, 'width', 1000/n -5);
+                rect.setAttributeNS(null, 'fill', '#5bc0de');
+                rect.setAttributeNS(null, 'id', id);
+                rect.setAttributeNS(null, 'name', 'rects');
+                rect.setAttributeNS(null, 'original_y', y_val);
+                rect.setAttributeNS(null, 'y_updated_with_surplus', y_val);
+                rect.setAttributeNS(null, 'stroke', 'black');
+                rect.setAttributeNS(null, 'stroke-width', 1);
+                rect.setAttributeNS(null, 'opacity', 0.3)
+                
+                rect.setAttributeNS(null, 'onmouseover', "this.setAttribute('stroke', 'black');this.setAttribute('stroke-width', 5);");
+                rect.setAttributeNS(null, 'onmouseout', "this.setAttribute('stroke', '');this.setAttribute('stroke-width', 0);");
+                document.getElementById(svg).appendChild(rect);  
+                bars.push(rect)
+
+               
+                var rect = document.createElementNS(svgNS,"rect");  
+                rect.setAttributeNS(null, 'x', i*1000/n );
+                rect.setAttributeNS(null, 'y', y_val);
+                rect.setAttributeNS(null, 'height', 0);
+                rect.setAttributeNS(null, 'width', 1000/n -5);
+                rect.setAttributeNS(null, 'fill', '#b5e7f7');
+                rect.setAttributeNS(null, 'id', 'orig'+id);
+                rect.setAttributeNS(null, 'name', 'rects');
+                rect.setAttributeNS(null, 'original_y', y_val);
+                rect.setAttributeNS(null, 'y_updated_with_surplus', y_val);
+                rect.setAttributeNS(null, 'stroke', 'black');
+                rect.setAttributeNS(null, 'stroke-width', 1);
+                rect.setAttributeNS(null, 'onmouseover', "this.setAttribute('stroke', 'black');this.setAttribute('stroke-width', 5);");
+                rect.setAttributeNS(null, 'onmouseout', "this.setAttribute('stroke', '');this.setAttribute('stroke-width', 0);");
+                document.getElementById(svg).appendChild(rect); 
+                bars_behind.push(rect)
+            
+
+                var mytext = document.createElementNS(svgNS,"text");  
+                mytext.setAttributeNS(null,  'x', i*1000/n + 20)
+                mytext.setAttributeNS(null, 'y', y_val - 5)
+                mytext.setAttributeNS(null, 'text-anchor', "middle")
+                mytext.setAttributeNS(null, 'font-weight', "bold")
+                mytext.setAttributeNS(null, 'font-size', "15")
+                mytext.setAttributeNS(null, 'id', "text"+i)
+                mytext.setAttributeNS(null, 'name', 'texts');
+                mytext.textContent = Math.round((500 - y_val)*10)/10;
+                document.getElementById(svg).appendChild(mytext); 
+
+                anime({
+                    targets: ['#'+id, '#orig'+id],
+                    height: 500-y_val,
+                    easing: 'easeInOutQuad',
+                    duration: 1000,
+                    loop: false,
+                    delay: i*10
+                });
+
+                
+            }
+
+            bars.forEach(element => {
+                document.getElementById(svg).appendChild(element)
+            })
+
+            if(svg=='svg1' || svg=='svg4' || svg=='svg5'){
+
+                try {
+                    document.getElementById('level').remove()
+                }
+                catch{
+
+                }
+
+                try {
+                    document.getElementById('level2').remove()
+                }
+                catch{
+
+                }
+                
+                var myline = document.createElementNS(svgNS,"line");  
+                myline.setAttributeNS(null,  'x1', 0)
+                myline.setAttributeNS(null, 'y1', y_list.reduce((a, b) => a + b, 0)/y_list.length)
+                myline.setAttributeNS(null,  'x2', 1000)
+                myline.setAttributeNS(null, 'y2', y_list.reduce((a, b) => a + b, 0)/y_list.length)
+                myline.setAttributeNS(null, 'fill', '#F6C70A')
+                myline.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+                myline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+                myline.setAttributeNS(null, 'id', "level2")
+                document.getElementById(svg).appendChild(myline); 
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', 250)
+                text.setAttributeNS(null, 'y', 100)
+                text.setAttributeNS(null, 'font-size', 50)
+                text.setAttributeNS(null, 'fill', "black")
+                text.textContent = 'Push this bar down slowly'
+                document.getElementById(svg).appendChild(text)
+
+                var g = document.createElementNS(svgNS,"g");  
+                g.setAttributeNS(null, 'id', 'level')
+                g.setAttributeNS(null, 'class', "draggable")
+                var myline = document.createElementNS(svgNS,"line");  
+                myline.setAttributeNS(null,  'x1', 10)
+                myline.setAttributeNS(null, 'y1', 100)
+                myline.setAttributeNS(null,  'x2', 990)
+                myline.setAttributeNS(null, 'y2', 100)
+                myline.setAttributeNS(null, 'style', "stroke:black;stroke-width:5;")
+                g.appendChild(myline)
+                g.appendChild(text)
+                document.getElementById(svg).appendChild(g); 
+
+                anime({
+                    targets: g,
+                    'transform':"translate(0,50)",
+                    
+                    'opacity':0.3,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: 4,
+                    delay: 0,
+                    persist: false
+                });
+
+                
+            }
+        }
+
+
+        
+
+                
+        // target elements with the "draggable" class
+        interact('.draggable')
+        .draggable({
+            // enable inertial throwing
+            inertia: true,
+            // keep the element within the area of it's parent
+            modifiers: [
+            interact.modifiers.restrictRect({
+                restriction: 'parent',
+                endOnly: true
+            })
+            ],
+            // enable autoScroll
+            autoScroll: true,
+
+            listeners: {
+            // call this function on every dragmove event
+            move: dragMoveListener,
+
+            // call this function on every dragend event
+            end (event) {
+                var textEl = event.target.querySelector('p')
+
+                textEl && (textEl.textContent =
+                'moved a distance of ' +
+                (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
+                            Math.pow(event.pageY - event.y0, 2) | 0))
+                    .toFixed(2) + 'px')
+            }
+            }
+        })
+
+
+        active_bars = []
+        inactive_bars = bars.slice();
+
+        function dragMoveListener (event) {
+            
+            var target = event.target,
+                // keep the dragged position in the data-x/data-y attributes
+                x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+                y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+
+            if(target.getAttribute('id') != 'hook' && target.getAttribute('which') != 'refline'){
+                target.setAttribute('data-y', y);
+                if(y+100 <= y_list.reduce((a, b) => a + b, 0)/y_list.length){
+                    // translate the element
+                    target.style.webkitTransform =
+                    target.style.transform =
+                    'translate(' + x + 'px, ' + y + 'px)';
+
+                   
+                    if(y+100 >=200 ){
+                        adjust_bars(y+100, active_bars, inactive_bars);
+                        if(Math.abs(y+100 - y_list.reduce((a, b) => a + b, 0)/y_list.length) <= 5){
+                            bars_behind.forEach(element => {
+                                yy = parseFloat(element.getAttribute('y'))
+                                anime({
+                                    targets: element,
+                                    fill: '#EB892F',
+                                    easing: 'easeInOutQuad',
+                                    direction: 'alternate',
+                                    duration: 1000,
+                                    loop: false,
+                                    delay: 1000
+                                });
+
+                                anime({
+                                    targets: '#level2',
+                                    'stroke-width': 10,
+                                    'stroke': '#1892B8',
+                                    easing: 'easeInOutQuad',
+                                    direction: 'alternate',
+                                    duration: 1000,
+                                    loop: false,
+                                    delay: 1000
+                                });
+
+                            })
+
+                        }
+                    }
+                    
+                }
+            } else if (target.getAttribute('id') == 'hook') {
+                svg = target.parentElement
+                console.log(target.parentElement)
+                var pt = svg.createSVGPoint();
+                pt.x = event.pageX;
+                pt.y = event.pageY;
+                pt = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+            
+                // translate the element
+                target.style.webkitTransform =
+                
+
+                // update the posiion attributes
+                target.setAttribute('x', pt.x-100);
+                target.setAttribute('y', pt.y-100);
+
+                rope = document.getElementById('hook_rope')
+                rope.setAttribute('x1', pt.x-20)
+                rope.setAttribute('y1', -200)
+                rope.setAttribute('x2', pt.x-20)
+                rope.setAttribute('y2', pt.y-100)
+                
+            } else if (target.getAttribute('which') == 'refline'){
+                svg = target.parentElement
+                console.log(target.parentElement)
+                var pt = svg.createSVGPoint();
+                pt.x = event.pageX;
+                pt.y = event.pageY;
+                pt = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+            
+                
+                if(pt.y >= -100 && pt.y <= 400){
+                    // update the posiion attributes
+                    target.setAttribute('y1', pt.y);
+                    target.setAttribute('y2', pt.y);
+
+                    index=0
+                    dynamic_bars_level.forEach(element => {
+                        if(element == target){
+                            dynamic_bars[index].setAttribute('y',pt.y)
+                            dynamic_bars[index].setAttribute('height', 400 - pt.y)
+                            ref_texts[index].textContent = 400 - parseInt(pt.y)
+                            ref_texts[index].setAttribute('y', pt.y-20)
+                            dynamic_bar_values[index] = parseInt(pt.y)
+                            the_mean = dynamic_bar_values.reduce((a, b) => a + b, 0)/dynamic_bar_values.length
+                            ref_meanline.setAttribute('y1', the_mean)
+                            ref_meanline.setAttribute('y2',  the_mean)
+                        }
+                        index ++
+                    })
+                }
+               
+            }
+            
+            
+            
+
+
+        }
+        
+        
+
+        function adjust_bars(y, active, inactive){
+            len = inactive.length
+            if(y > prev_y){
+                
+                surplus = 0
+
+                bars.forEach(element =>{
+                    if(y >= element.getAttribute('y')){
+
+                        if(max_level == 0){
+                            max_level = y
+                        } 
+                        surplus += y - max_level 
+
+                        element.setAttribute('y', y);
+                        element.setAttribute('height', 500-y);
+                        
+                    } 
+                    
+                }) 
+
+                max_level = y>max_level?y:max_level 
+                
+                how_many = 0
+                bars.forEach(element =>{
+                    if(y < element.getAttribute('y')){
+                        how_many++;
+                    } 
+                })  
+
+                if ((how_many < previous_how_many || previous_how_many == 0) && max_levels.length < bars.length){
+                    previous_how_many = how_many
+                    max_levels.push(y)
+                }
+
+                bars.forEach(element =>{
+                    if(y < element.getAttribute('y')){
+                        element.setAttribute('y', element.getAttribute('y') - surplus/how_many);
+                        element.setAttribute('height', 500- element.getAttribute('y') + surplus/how_many);
+                    } 
+                })
+            } else {
+                bars.forEach(element =>{
+                    if(y >= element.getAttribute('y')){
+                        if(max_level == 0){
+                            max_level = y
+                        } 
+                        surplus += y - max_level 
+                        element.setAttribute('y', y);
+                        element.setAttribute('height', 500-y);
+                    } 
+                }) 
+            }
+
+            
+
+            
+            //<inactive.forEach(element =>{
+            //    orig_y = element.getAttribute('y')
+            //    element.setAttribute('y', orig_y-surplus/inactive.length);
+            //    element.setAttribute('height', 500-orig_y+surplus/inactive.length);
+                
+            //})  
+
+            prev_y = y
+           
+            
+        }
+
+        
+        window.dragMoveListener = dragMoveListener
+
+
+        circles = []
+        texts = []
+        r_values = []
+        sample_size = 0
+        function generate_circles(n_sample, div){
+            sample_size  = parseInt(n_sample)
+            circles = []
+            texts = []
+            r_values = []
+            circs = document.getElementsByName('circles')
+            while(circs.length>0){
+                circs.forEach(element => {element.remove()})
+            }
+            
+            txts = document.getElementsByName('texts')
+            while(txts.length>0){
+                txts.forEach(element => {element.remove()})
+            }
+
+            try{
+                document.getElementById('upper').remove()
+            } catch {}
+
+            try{
+                document.getElementById('lower').remove()
+            } catch {}
+           
+
+            for(i=0; i < n_sample; i++){
+                r = 1
+                if(i == n_sample-1){
+                    sum = r_values.reduce((a, b) => a + b, 0)
+                    while(true){
+                        console.log(sum+r % 25 + '--'+r+'---'+sum)
+                        if((sum+r) % 25 == 0){
+                            break;
+                        } else {
+                            r++
+                        }
+                    }
+                } else {
+                    r = parseInt(Math.round(Math.random()*100)/sample_size)*sample_size +10
+                }
+                
+                r_values.push(r)
+                var circle = document.createElementNS(svgNS,"circle");  
+                circle.setAttributeNS(null, 'cx', 1000/n_sample * i + 100)
+                circle.setAttributeNS(null, 'cy', 200)
+                circle.setAttributeNS(null, 'r', r)
+                circle.setAttributeNS(null, 'fill', "#C1CDDE")
+                circle.setAttributeNS(null, 'name', "circles")
+                circle.setAttributeNS(null, 'stroke', "black")
+                circle.setAttributeNS(null, 'index', i)
+                circle.setAttributeNS(null, 'opacity', 0.3)
+                document.getElementById(div).appendChild(circle)
+
+
+                var circle = document.createElementNS(svgNS,"circle");  
+                circle.setAttributeNS(null, 'cx', 1000/n_sample * i + 100)
+                circle.setAttributeNS(null, 'cy', 200)
+                circle.setAttributeNS(null, 'r', r)
+                circle.setAttributeNS(null, 'fill', "#57EBB1")
+                circle.setAttributeNS(null, 'name', "circles")
+                circle.setAttributeNS(null, 'stroke', "black")
+                circle.setAttributeNS(null, 'index', i)
+                circle.setAttributeNS(null, 'onclick', "update_circle(this)")
+                document.getElementById(div).appendChild(circle)
+                circles.push(circle)
+
+                
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', 1000/n_sample * i + 80)
+                text.setAttributeNS(null, 'y', 500)
+                text.setAttributeNS(null, 'font-size', 50)
+                text.setAttributeNS(null, 'fill', "black")
+                text.setAttributeNS(null, 'name', "texts")
+                text.setAttributeNS(null, 'index', i)
+                text.textContent = r
+                document.getElementById(div).appendChild(text)
+                texts.push(text)
+            }
+
+            mean = r_values.reduce((a, b) => a + b, 0)/r_values.length
+            var myline = document.createElementNS(svgNS,"line");  
+            myline.setAttributeNS(null, 'x1', 0)
+            myline.setAttributeNS(null, 'y1', 200-mean)
+            myline.setAttributeNS(null,  'x2', 1000)
+            myline.setAttributeNS(null, 'y2', 200-mean)
+            myline.setAttributeNS(null, 'fill', '#F6C70A')
+            myline.setAttributeNS(null, 'style', "stroke:#5bc0de;stroke-width:1;")
+            myline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+            myline.setAttributeNS(null, 'id', "upper")
+            document.getElementById(div).appendChild(myline); 
+
+            var myline = document.createElementNS(svgNS,"line");  
+            myline.setAttributeNS(null, 'x1', 0)
+            myline.setAttributeNS(null, 'y1', 200+mean)
+            myline.setAttributeNS(null,  'x2', 1000)
+            myline.setAttributeNS(null, 'y2', 200+mean)
+            myline.setAttributeNS(null, 'fill', '#F6C70A')
+            myline.setAttributeNS(null, 'style', "stroke:#5bc0de;stroke-width:1;")
+            myline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+            myline.setAttributeNS(null, 'id', "lower")
+            document.getElementById(div).appendChild(myline); 
+        }
+
+        function update_circle(clicked){
+            max_r = Math.max(...r_values)
+            clicked_index = parseInt(clicked.getAttribute('index'))
+            
+            for(i=0; i<circles.length; i++) {
+                element = circles[i]
+                
+                if(element.getAttribute('r') == max_r && element != clicked){
+                    max_index = parseInt(element.getAttribute('index'))
+                    max_val = r_values[max_index]
+                    clicked_val = r_values[clicked_index]
+
+                    var tl = anime.timeline({
+                        easing: 'easeInOutQuad',
+                        duration: 1000
+                    });
+
+                    tl.add({
+                        targets: element,
+                        r: max_val - 5,
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        loop: false,
+                    })
+
+                    tl.add({
+                        targets: element,
+                        fill: '#F66460',
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        loop: false,
+                    })
+
+                    tl.add({
+                        targets: element,
+                        fill: '#57EBB1',
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        loop: false,
+                    })
+
+                    texts[max_index].textContent = max_val - 5
+                  
+                    tl.add({
+                        targets: clicked,
+                        r: clicked_val + 5,
+                        easing: 'easeInOutQuad',
+                        duration: 250,
+                        loop: false,
+                        delay: 0
+                    })
+
+                    texts[clicked_index].textContent = clicked_val + 5,
+                   
+                    r_values[clicked_index] = r_values[clicked_index] + 5
+                    r_values[max_index] = r_values[max_index] - 5
+                    break;
+                }
+                
+                
+            }
+            if( Math.max(...r_values) ==  Math.min(...r_values)){
+                anime({
+                    targets: '#lower',
+                    'stroke-width': "10",
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: 3,
+                    delay: 0
+                        
+                })
+                anime({
+                    targets: '#upper',
+                    'stroke-width': "10",
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: 3,
+                    delay: 0
+                        
+                })
+            }
+             
+        }
+
+        mean_circles = []
+        reftext = null
+        reftext1 = null
+        reftext2 = null
+        reftext3 = null
+        ref_line1 = null
+        ref_line2 = null
+        ref_lin3 = null
+        ref_lin4 = null
+        executed=0
+        
+        function mean_effect(svg){
+            y_min = 50
+            y_max = 600
+            n_points=50
+            mean = 100
+            mean_y = y_max -20
+            initial_sample_size= parseInt(document.getElementById('sample_size_slider').value)
+            outlier = 350
+            document.getElementById('from_value').innerText = 'INITIAL SAMPLE SIZE ---> '+initial_sample_size
+            
+            if(document.getElementsByName('mean_effect').length==0){
+                var myline0 = document.createElementNS(svgNS,"line");  
+                myline0.setAttributeNS(null,  'x1', 0)
+                myline0.setAttributeNS(null, 'y1', 300)
+                myline0.setAttributeNS(null,  'x2', 1000)
+                myline0.setAttributeNS(null, 'y2', 300)
+                myline0.setAttributeNS(null, 'fill', '#F6C70A')
+                myline0.setAttributeNS(null, 'name', 'mean_effect')
+                myline0.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+                myline0.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+                document.getElementById(svg).appendChild(myline0); 
+
+                var myline1 = document.createElementNS(svgNS,"line");  
+                myline1.setAttributeNS(null,  'x1', 0)
+                myline1.setAttributeNS(null, 'y1', 300)
+                myline1.setAttributeNS(null,  'x2', 1000)
+                myline1.setAttributeNS(null, 'y2', 300)
+                myline1.setAttributeNS(null, 'fill', '#F6C70A')
+                myline1.setAttributeNS(null, 'name', 'mean_effect')
+                myline1.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+                myline1.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+                document.getElementById(svg).appendChild(myline1); 
+
+                var myline2 = document.createElementNS(svgNS,"line");  
+                myline2.setAttributeNS(null,  'x1', 0)
+                myline2.setAttributeNS(null, 'y1', 300)
+                myline2.setAttributeNS(null,  'x2', 1000)
+                myline2.setAttributeNS(null, 'y2', 300)
+                myline2.setAttributeNS(null, 'fill', '#F6C70A')
+                myline2.setAttributeNS(null, 'name', 'mean_effect')
+                myline2.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+                myline2.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+                document.getElementById(svg).appendChild(myline2); 
+
+                var myline3 = document.createElementNS(svgNS,"line");  
+                myline3.setAttributeNS(null,  'x1', 0)
+                myline3.setAttributeNS(null, 'y1', 300)
+                myline3.setAttributeNS(null,  'x2', 1000)
+                myline3.setAttributeNS(null, 'y2', 300)
+                myline3.setAttributeNS(null, 'fill', '#F6C70A')
+                myline3.setAttributeNS(null, 'name', 'mean_effect')
+                myline3.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+                myline3.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+                document.getElementById(svg).appendChild(myline3); 
+
+                ref_line1 = myline0
+                ref_line2 = myline1
+                ref_line3 = myline2
+                ref_line4 = myline3
+
+            }
+            var circle = document.createElementNS(svgNS,"circle");  
+            circle.setAttributeNS(null, 'cx', 20)
+            circle.setAttributeNS(null, 'cy', mean_y)
+            circle.setAttributeNS(null, 'r', 10)
+            circle.setAttributeNS(null, 'fill', "#5bc0de")
+            circle.setAttributeNS(null, 'stroke', "black")
+            circle.setAttributeNS(null,'name', 'mean_effect_circles')
+            document.getElementById(svg).appendChild(circle)
+            
+            var text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 10)
+            text.setAttributeNS(null, 'y', mean_y+30)
+            text.setAttributeNS(null, 'font-size', 20)
+            text.setAttributeNS(null, 'fill', "black")
+            text.textContent = 'Initial mean: ' + mean
+            document.getElementById(svg).appendChild(text)
+           
+
+
+            if(document.getElementsByName('values_effects').length==0){
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', 0)
+                text.setAttributeNS(null, 'y', 600)
+                text.setAttributeNS(null, 'font-size', 20)
+                text.setAttributeNS(null, 'fill', "black")
+                text.setAttributeNS(null, 'name', "values_effects")
+                text.textContent = 'Sample size: ' + (parseInt(initial_sample_size)+1)
+                document.getElementById(svg).appendChild(text)
+
+                var text1 = document.createElementNS(svgNS,"text");  
+                text1.setAttributeNS(null, 'x', 0)
+                text1.setAttributeNS(null, 'y', 600)
+                text1.setAttributeNS(null, 'font-size', 20)
+                text1.setAttributeNS(null, 'fill', "black")
+                text1.setAttributeNS(null, 'name', "values_effects")
+                text1.textContent = 'Sample size: ' +(parseInt(initial_sample_size)+2)
+                document.getElementById(svg).appendChild(text1)
+
+                var text2 = document.createElementNS(svgNS,"text");  
+                text2.setAttributeNS(null, 'x', 0)
+                text2.setAttributeNS(null, 'y', 600)
+                text2.setAttributeNS(null, 'font-size', 20)
+                text2.setAttributeNS(null, 'fill', "black")
+                text2.setAttributeNS(null, 'name', "values_effects")
+                text2.textContent = 'Sample size: ' +(parseInt(initial_sample_size)+3)
+                document.getElementById(svg).appendChild(text2)
+
+                var text3 = document.createElementNS(svgNS,"text");  
+                text3.setAttributeNS(null, 'x', 0)
+                text3.setAttributeNS(null, 'y', 600)
+                text3.setAttributeNS(null, 'font-size', 20)
+                text3.setAttributeNS(null, 'fill', "black")
+                text3.setAttributeNS(null, 'name', "values_effects")
+                text3.textContent = 'Sample size: ' +(parseInt(initial_sample_size)+10)
+                document.getElementById(svg).appendChild(text3)
+
+                reftext = text
+                reftext1 = text1
+                reftext2 = text2
+                reftext3 = text3
+            }
+
+
+            if(document.getElementsByName('mean_effect_circles').length==1){
+                for(i=0; i<n_points;i=i+1){
+                    
+                    
+                    var circle = document.createElementNS(svgNS,"circle");  
+                    circle.setAttributeNS(null, 'cx', i*(1000/n_points)+40)
+                    circle.setAttributeNS(null, 'cy', mean_y)
+                    circle.setAttributeNS(null, 'r', 0)
+                    circle.setAttributeNS(null, 'fill', "#5bc0de")
+                    circle.setAttributeNS(null, 'stroke', "black")
+                    circle.setAttributeNS(null,'name', 'mean_effect_circles')
+                    document.getElementById(svg).appendChild(circle)
+                    var tl = anime.timeline({
+                            easing: 'easeInOutQuad',
+                            duration: 1000
+                        });
+                    tl.add({
+                        targets: circle,
+                        r: 10,
+                        easing: 'easeInOutQuad',
+                        direction: 'alternate',
+                        duration: 1000,
+                        loop: false,
+                        delay: 100        
+                    })
+                    mean_circles.push(circle)
+                }
+            }
+
+            index = initial_sample_size
+            mean_circles.forEach(element => {
+                new_mean = ((mean*(index)+outlier)/(index+1))
+                console.log(initial_sample_size +' --> '+new_mean)
+                var tl = anime.timeline({
+                            easing: 'easeInOutQuad',
+                            duration: 1000
+                        });
+                tl.add({
+                    targets: element,
+                    'cy':  mean_y - (new_mean-mean)*(5),
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: false,
+                    delay: 0   
+                })
+                if(index-initial_sample_size==0){
+                    tl.add({
+                        targets: ref_line1,
+                        'y1': mean_y - (new_mean-mean)*(5),
+                        'y2': mean_y - (new_mean-mean)*(5),
+                        'x1': parseInt(element.getAttribute('cx')),
+                        'x2': parseInt(element.getAttribute('cx'))+50,
+                        easing: 'easeInOutQuad',
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    }),
+                    tl.add({
+                        targets: reftext,
+                        'x': parseInt(element.getAttribute('cx'))+50,
+                        'y': mean_y - (new_mean-mean)*(5),
+                        easing: 'easeInOutQuad',
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    reftext.textContent  = 'Sample size: ' + (parseInt(initial_sample_size)+1) + ', New Mean: '+parseInt(new_mean*100)/100
+                } else if(index-initial_sample_size==1){
+                    tl.add({
+                        targets: ref_line2,
+                        'y1': mean_y - (new_mean-mean)*(5),
+                        'y2': mean_y - (new_mean-mean)*(5),
+                        'x1': parseInt(element.getAttribute('cx')),
+                        'x2': parseInt(element.getAttribute('cx'))+250,
+                        easing: 'easeInOutQuad',
+                    
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    tl.add({
+                        targets: reftext1,
+                        'x': parseInt(element.getAttribute('cx'))+250,
+                        'y': mean_y - (new_mean-mean)*(5),
+                        easing: 'easeInOutQuad',
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    reftext1.textContent  = 'Sample size: ' + (parseInt(initial_sample_size)+2)+ ', New Mean: '+parseInt(new_mean*100)/100
+                } else if(index-initial_sample_size==2){
+                    tl.add({
+                        targets: ref_line3,
+                        'y1': mean_y - (new_mean-mean)*(5),
+                        'y2': mean_y - (new_mean-mean)*(5),
+                        'x1': parseInt(element.getAttribute('cx')),
+                        'x2': parseInt(element.getAttribute('cx'))+450,
+                        easing: 'easeInOutQuad',
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    tl.add({
+                        targets: reftext2,
+                        'x': parseInt(element.getAttribute('cx'))+450,
+                        'y': mean_y - (new_mean-mean)*(5),
+                        easing: 'easeInOutQuad',
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    reftext2.textContent  = 'Sample size: ' + (parseInt(initial_sample_size)+3)+ ', New Mean: '+parseInt(new_mean*100)/100
+                } else if(index-initial_sample_size==10){
+                    tl.add({
+                        targets: ref_line4,
+                        'y1': mean_y - (new_mean-mean)*(5),
+                        'y2': mean_y - (new_mean-mean)*(5),
+                        'x1': parseInt(element.getAttribute('cx')),
+                        'x2': parseInt(element.getAttribute('cx'))+550,
+                        easing: 'easeInOutQuad',
+                    
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    tl.add({
+                        targets: reftext3,
+                        'y': mean_y - (new_mean-mean)*(5),
+                        'x': parseInt(element.getAttribute('cx'))+550,
+                        easing: 'easeInOutQuad',
+                        duration: 1000,
+                        loop: false,
+                        delay: 0   ,
+                        persist: true
+                    })
+                    reftext3.textContent  = 'Sample size: ' + (parseInt(initial_sample_size)+10)+ ', New Mean: '+parseInt(new_mean*100)/100
+                }
+                
+
+                
+                index++
+            })
+
+            
+            
+           
+
+            var myline = document.createElementNS(svgNS,"line");  
+            myline.setAttributeNS(null,  'x1', 0)
+            myline.setAttributeNS(null, 'y1', y_max-20)
+            myline.setAttributeNS(null,  'x2', 1000)
+            myline.setAttributeNS(null, 'y2', y_max-20)
+            myline.setAttributeNS(null, 'fill', '#F6C70A')
+            myline.setAttributeNS(null, 'id', 'mean_limit_line')
+            myline.setAttributeNS(null, 'style', "stroke:black;stroke-width:1;")
+            myline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+            document.getElementById(svg).appendChild(myline); 
+            
+        }
+
+        function remove_elements(name){
+            while(document.getElementsByName(name).length>0){
+                temp = document.getElementsByName(name)
+                temp.forEach(element => {element.remove()})
+            }
+        }
+
+        function create_hook_animation(svg){
+            hook = document.getElementById('hook')
+            remove_elements('buckets')
+            remove_elements('bucket_vals')
+            buckets = []
+            bucket_vals = []
+            try {document.getElementById('result_test_hook').textContent = ''}
+            catch{};
+            
+            try {document.getElementById('hook_rope').remove()}
+            catch {}
+
+            var myline = document.createElementNS(svgNS,"line");  
+            myline.setAttributeNS(null,  'x1', parseInt(hook.getAttribute('x'))+75)
+            myline.setAttributeNS(null, 'y1', -250)
+            myline.setAttributeNS(null,  'x2', parseInt(hook.getAttribute('x'))+75)
+            myline.setAttributeNS(null, 'y2', hook.getAttribute('y'))
+            myline.setAttributeNS(null, 'fill', '#F6C70A')
+            myline.setAttributeNS(null, 'id', 'hook_rope')
+            myline.setAttributeNS(null, 'style', "stroke:black;stroke-width:3;")
+            myline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+            document.getElementById(svg).appendChild(myline); 
+
+            var bucket=document.getElementById("bucket")
+            bucket_vals.forEach(element => {element.remove()})
+            buckets.forEach(element => {element.remove()})
+
+            for(i=0;i<4;i++){
+                value =  parseInt(parseInt(Math.random()*100)/4)*4
+                var bucket_new=bucket.cloneNode(true)
+                bucket_new.setAttribute('x', i*250+50)
+                bucket_new.setAttribute('original_x', i*250+50)
+                bucket_new.setAttribute('original_y', bucket_new.getAttribute('y'))
+                bucket_new.setAttribute('style', 'display: block')
+                bucket_new.setAttribute('onclick', 'pick_bucket(this)')
+                bucket_new.setAttribute('name', 'buckets')
+                bucket_new.setAttribute('value', value)
+                bucket_new.setAttribute('processed', false)
+                buckets.push(bucket_new)
+                document.getElementById(svg).appendChild(bucket_new)
+
+                var text = document.createElementNS(svgNS,"text");  
+                text.setAttributeNS(null, 'x', i*250+85)
+                text.setAttributeNS(null, 'y', 600)
+                text.setAttributeNS(null, 'font-size', 50)
+                text.setAttributeNS(null, 'fill', "black")
+                text.setAttributeNS(null, 'name', "bucket_vals")
+                text.textContent = value
+                document.getElementById(svg).appendChild(text)
+                bucket_vals.push(text)
+
+            }
+
+            var text = document.createElementNS(svgNS,"text");  
+            text.setAttributeNS(null, 'x', 470)
+            text.setAttributeNS(null, 'y', 270)
+            text.setAttributeNS(null, 'font-size', 0)
+            text.setAttributeNS(null, 'fill', "black")
+            text.setAttributeNS(null, 'id', "result_test_hook")
+            text.textContent = 0
+            document.getElementById(svg).appendChild(text)
+            
+
+              
+        }
+
+        buckets = []
+        bucket_vals = []
+
+        
+
+        function pick_bucket(obj){
+            rope = document.getElementById('hook_rope')
+            hook = document.getElementById('hook')
+            console.log(obj.getAttribute('y'))
+            
+            buckets.forEach(element => {
+                element.setAttribute('onclick','')
+            })
+            obj.setAttribute('processed', true)
+
+
+            var tl = anime.timeline({
+                    easing: 'easeInOutQuad',
+                });
+
+            speed = 800
+            tl.add({
+                targets: hook,
+                'x':  obj.getAttribute('x') ,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true    
+            })
+
+            tl.add({
+                targets: rope,
+                'x1':  parseInt(obj.getAttribute('x')) + 70,
+                'x2':  parseInt(obj.getAttribute('x')) + 70,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true
+            },'-='+speed)
+
+            tl.add({
+                targets: hook,
+                'y':  parseInt(obj.getAttribute('y'))-120 ,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true
+            })
+
+            tl.add({
+                targets: rope,
+                'y2':  parseInt(obj.getAttribute('y'))-120,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true
+            },'-='+speed)
+
+            tl.add({
+                targets: hook,
+                'y':  -50 ,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true   
+            })
+
+            tl.add({
+                targets: rope,
+                'y2':  -50,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true
+            },'-='+speed)
+
+
+            tl.add({
+                targets: obj,
+                'y':  80 ,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true   
+            },'-='+speed)
+
+
+            tl.add({
+                targets: hook,
+                'x':  425 ,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true 
+            })
+
+            tl.add({
+                targets: obj,
+                'x':  425 ,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true   
+            },'-='+speed)
+
+            tl.add({
+                targets: rope,
+                'x1': 500,
+                'x2': 500,
+                easing: 'easeInOutQuad',
+                direction: 'alternate',
+                duration: speed,
+                loop: false,
+                persist: true ,  
+                complete: function(anim) {
+                    var processed = 0
+                    var total = 0
+                    buckets.forEach(element => {
+                        element.setAttribute('onclick','pick_bucket(this)')
+                        if(element.getAttribute('processed') == 'true'){
+                            processed++
+                            total+= parseInt(element.getAttribute('value'))
+                        }
+                        console.log(processed +'=='+ buckets.length + '---'+element.getAttribute('processed'))
+                        document.getElementById('result_test_hook').textContent = total 
+                        document.getElementById('result_test_hook').setAttribute('font-size', 50)
+                        
+                    })
+
+                    if(processed == buckets.length){
+                        finalize_hook_animation()
+                    }
+
+                    
+                }
+            },'-='+speed)
+        }
+
+        function finalize_hook_animation(){
+            var tl = anime.timeline({
+                        easing: 'easeInOutQuad',
+                
+                    });
+
+            buckets.forEach(element => {
+                tl.add({
+                    targets: element,
+                    'x': element.getAttribute('original_x'),
+                    'y': element.getAttribute('original_y'),
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 1000,
+                    loop: false,
+                    persist: true
+                })
+            })
+
+            bucket_vals.forEach(element => {
+                tl.add({
+                    targets: element,
+                    'font-size': 0,
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 200,
+                    loop: false,
+                    persist: true,
+                    
+                })
+            })
+
+            cur_var = parseInt(document.getElementById('result_test_hook').textContent)
+
+            bucket_vals.forEach(element => {
+               
+                tl.add({
+                    targets: element,
+                    'font-size': 50,
+                   
+                    easing: 'easeInOutQuad',
+                    direction: 'alternate',
+                    duration: 200,
+                    loop: false,
+                    persist: true,
+                    complete: function() { element.textContent = cur_var/4}
+                },'-=100')
+            })
+            
+        }
+
+
+        dynamic_bars  =[]
+        dynamic_bar_values  =[]
+        dynamic_bars_cancel  =[]
+        dynamic_bars_level  =[]
+        ref_texts  =[]
+        ref_rect = null
+        ref_rect_cancel = null
+        ref_rect_level = null
+        ref_text = null
+        ref_meanline = null
+        executed = 0
+        function mean_dynamic(svg){
+            if(executed == 1){
+                return;
+            }
+            executed = 1
+            var circle = document.createElementNS(svgNS,"circle");  
+            circle.setAttributeNS(null, 'cx',500)
+            circle.setAttributeNS(null, 'cy', 600)
+            circle.setAttributeNS(null, 'r', 50)
+            circle.setAttributeNS(null, 'fill', "#6ADB7A")
+            circle.setAttributeNS(null, 'name', "circles")
+            circle.setAttributeNS(null, 'stroke', "black")
+            circle.setAttributeNS(null, 'onclick', "add_element(this)")
+            document.getElementById(svg).appendChild(circle)
+
+            var rect = document.createElementNS(svgNS,"rect");  
+            rect.setAttributeNS(null, 'x', 1000 );
+            rect.setAttributeNS(null, 'y', 100);
+            rect.setAttributeNS(null, 'height', 300);
+            rect.setAttributeNS(null, 'width', 0);
+            rect.setAttributeNS(null, 'fill', '#5bc0de');
+            rect.setAttributeNS(null, 'stroke', "black")
+            rect.setAttributeNS(null, 'opacity', "0.5")
+            ref_rect = rect
+
+            var rect = document.createElementNS(svgNS,"rect");  
+            rect.setAttributeNS(null, 'x', 1000 );
+            rect.setAttributeNS(null, 'y', 400);
+            rect.setAttributeNS(null, 'height', 20);
+            rect.setAttributeNS(null, 'width', 0);
+            rect.setAttributeNS(null, 'fill', '#DB4B4B');
+            rect.setAttributeNS(null, 'stroke', "black")
+            rect.setAttributeNS(null, 'onclick', "remove_element(this)")
+            ref_rect_cancel = rect
+            
+            var myline = document.createElementNS(svgNS,"line");  
+            myline.setAttributeNS(null,  'x1', 1000)
+            myline.setAttributeNS(null, 'y1', 100)
+            myline.setAttributeNS(null,  'x2', 1000)
+            myline.setAttributeNS(null, 'y2', 100)
+            myline.setAttributeNS(null, 'style', "stroke:#117FF2;stroke-width:25;")
+            myline.setAttributeNS(null, 'which', "refline")
+            myline.setAttributeNS(null, 'stroke-dasharray', "50, 1")
+            myline.setAttributeNS(null, 'class', "draggable")
+            ref_rect_level = myline
+
+            var mytext = document.createElementNS(svgNS,"text");  
+            mytext.setAttributeNS(null,  'x', 1000)
+            mytext.setAttributeNS(null, 'y', 80)
+            mytext.setAttributeNS(null, 'text-anchor', "middle")
+            mytext.setAttributeNS(null, 'font-weight', "bold")
+            mytext.setAttributeNS(null, 'font-size', "20")
+            mytext.textContent = 300
+            ref_text = mytext
+
+            var meanline = document.createElementNS(svgNS,"line");  
+            meanline.setAttributeNS(null,  'x1', 50)
+            meanline.setAttributeNS(null, 'y1', 0)
+            meanline.setAttributeNS(null,  'x2', 950)
+            meanline.setAttributeNS(null, 'y2', 0)
+            meanline.setAttributeNS(null, 'style', "stroke:black;stroke-width:5;")
+            meanline.setAttributeNS(null, 'opacity', "0.5")
+            meanline.setAttributeNS(null, 'stroke-dasharray', "20, 5")
+            ref_meanline = meanline
+            document.getElementById(svg).appendChild(ref_meanline)
+            
+        }
+
+        function add_element(that){
+            var new_rect=ref_rect.cloneNode(true)
+            var new_rect_cancel=ref_rect_cancel.cloneNode(true)
+            var new_ref_rect_level=ref_rect_level.cloneNode(true)
+            var new_ref_text=ref_text.cloneNode(true)
+            var new_ref_mean_line = ref_meanline.cloneNode(true)
+            ref_meanline.remove()
+
+            dynamic_bars_level.push(new_ref_rect_level)
+            dynamic_bars.push(new_rect)
+            dynamic_bars_cancel.push(new_rect_cancel)
+            ref_texts.push(new_ref_text)
+            dynamic_bar_values.push(100)
+
+            the_mean = dynamic_bar_values.reduce((a, b) => a + b, 0)/dynamic_bar_values.length
+
+            total = dynamic_bars.length
+            new_width = 900/total
+            index = 0
+            dynamic_bars.forEach(element => {
+                anime({
+                    targets: element,
+                    'width': new_width,
+                    'x': index*900/total + 50,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index,
+                    persist: true
+                });
+
+                anime({
+                    targets: dynamic_bars_cancel[index],
+                    'width': new_width,
+                    'x': index*900/total + 50,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index,
+                    persist: true
+                });
+
+                anime({
+                    targets: dynamic_bars_level[index],
+                    'x1': index*900/total + 50,
+                    'x2': index*900/total + 50 + new_width,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index,
+                    persist: true
+                });
+
+                anime({
+                    targets: ref_texts[index],
+                    'x': (index*900/total + 50 + (index*900/total + 50 + new_width))/2,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index,
+                    persist: true
+                });
+
+                anime({
+                    targets: new_ref_mean_line,
+                    'y1': the_mean,
+                    'y2': the_mean,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index,
+                    persist: true
+                });
+              
+                index++
+            })
+            that.parentNode.appendChild(new_rect)
+            that.parentNode.appendChild(new_rect_cancel)
+            that.parentNode.appendChild(new_ref_rect_level)
+            that.parentNode.appendChild(new_ref_text)
+            that.parentNode.appendChild(new_ref_mean_line)
+            ref_meanline = new_ref_mean_line
+        }
+
+        function remove_element(that){
+            index = 0
+            dynamic_bars_cancel.forEach(element => {
+                if(that == element){
+                 
+                    element.remove()
+                    dynamic_bars[index].remove()
+                    dynamic_bars_level[index].remove()
+                    ref_texts[index].remove()
+
+                    dynamic_bars.splice(index,1);
+                    dynamic_bars_cancel.splice(index,1);
+                    dynamic_bars_level.splice(index,1);
+                    ref_texts.splice(index,1);
+                    dynamic_bar_values.splice(index,1);
+                }
+                index++
+            })
+            
+            the_mean = dynamic_bar_values.reduce((a, b) => a + b, 0)/dynamic_bar_values.length
+            total = dynamic_bars.length
+            new_width = 900/total
+            index = 0
+            dynamic_bars.forEach(element => {
+                anime({
+                    targets: element,
+                    'width': new_width,
+                    'x': index*900/total + 50,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 2000,
+                    loop: false,
+                    delay: 100*index
+                });
+
+                anime({
+                    targets: dynamic_bars_cancel[index],
+                    'width': new_width,
+                    'x': index*900/total + 50,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index
+                });
+
+                anime({
+                    targets: dynamic_bars_level[index],
+                    'x1': index*900/total + 50,
+                    'x2': index*900/total + 50 + new_width,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index
+                });
+
+                anime({
+                    targets: ref_texts[index],
+                    'x': (index*900/total + 50 + (index*900/total + 50 + new_width))/2,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index
+                });
+
+                anime({
+                    targets: ref_meanline,
+                    'y1': the_mean,
+                    'y2': the_mean,
+                    easing: 'spring(1, 80, 10, 0)',
+                    duration: 1000,
+                    loop: false,
+                    delay: 100*index,
+                    persist: true
+                });
+              
+                index++
+            })
+        }
+
+
+    </script>
+
+</body>
+
+</html>
